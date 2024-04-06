@@ -4,8 +4,11 @@ extends Area2D
 
 var lightPower: int = 0
 var building: Build
+var dark
 
 var connectedTiles: Array
+
+
 
 
 func set_pos_label(pos: Vector3):
