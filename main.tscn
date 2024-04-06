@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://cekqs0p5phe45"]
+[gd_scene load_steps=6 format=3 uid="uid://bqepsxv2y24uo"]
 
 [ext_resource type="Script" path="res://map/map.gd" id="1_n1bfs"]
 [ext_resource type="Script" path="res://camera.gd" id="2_2xbfh"]
@@ -32,6 +32,7 @@ text = "Energy: 0"
 script = ExtResource("2_mnvyg")
 
 [node name="Label2" type="Label" parent="Camera2D/Control"]
+layout_mode = 0
 offset_left = 474.0
 offset_top = -285.0
 offset_right = 545.0
