@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bqepsxv2y24uo"]
+[gd_scene load_steps=3 format=3 uid="uid://bqepsxv2y24uo"]
 
 [ext_resource type="Script" path="res://map/map.gd" id="1_n1bfs"]
+[ext_resource type="PackedScene" uid="uid://dubcd60cprcpp" path="res://components/BuildMenu.tscn" id="2_x1yqp"]
 
 [node name="Main" type="Node2D"]
 
@@ -8,3 +9,6 @@
 script = ExtResource("1_n1bfs")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="BuildMenu" parent="." instance=ExtResource("2_x1yqp")]
+visible = false
