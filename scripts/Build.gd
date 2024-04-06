@@ -15,6 +15,7 @@ func set_build(value):
 	match value:
 		Type.CASTLE:
 			add_child(castle.instantiate())
+			EventBus.start_turn.emit()
 		Type.FACTORY:
 			add_child(factory.instantiate())
 		Type.LUMINAIRE:

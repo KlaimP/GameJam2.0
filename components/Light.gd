@@ -7,7 +7,7 @@ var castle;
 
 
 func _ready():
-	EventBus.end_turn.connect(start_turn)
+	EventBus.start_turn.connect(start_turn)
 	castle = EventBus.castle
 	work = working()
 
