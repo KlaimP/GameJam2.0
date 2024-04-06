@@ -21,10 +21,10 @@ func _on_create_factory_pressed():
 
 
 func _on_create_light_pressed():
-	choosedTile.set_build(1)
+	choosedTile.set_build(2)
 	self.hide()
 
 
 func _on_create_generator_pressed():
-	choosedTile.set_build(1)
+	choosedTile.set_build(3)
 	self.hide()
