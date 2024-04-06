@@ -5,6 +5,7 @@ var dark := 2
 @onready var artInf = load("res://dark_2.tscn")
 @onready var artFutInf = load("res://dark_3.tscn")
 
+var infectChance = 0.7
 
 var infectedTiles: Array
 var futureInfectedTiles: Array
@@ -37,7 +38,10 @@ func infect():
 func future_infected():
 	for i in infectedTiles:
 		for j in map.find_neighbors(i.tilePosition):
+			if j.dark != null:
+				continue
 			if j.lightPower < dark:
+				if randf() < infectChance: continue
 				var infectedTile = artFutInf.instantiate()
 				j.add_child(infectedTile)
 				futureInfectedTiles.append(j)

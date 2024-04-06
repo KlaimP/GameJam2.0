@@ -9,13 +9,14 @@ var TILE_XY_OFFSET: float = TILE_SIZE
 
 var sizeField = 9
 
-# Map Size: [Min  Diameter, Max Diameter, Minimum Number of Tiles]
+# Map Size: [Min  Diameter, Max Diameter, Min Number of Tiles, Max Number of Tiles]
 var genSizeSettings: Dictionary = {
-	0: [1, 4, 25],
-	1: [2, 6, 45],
-	2: [3, 8, 70]
+	0: [1, 4, 32, 40],
+	1: [2, 6, 45, 80],
+	2: [3, 8, 90, 120]
 }
-var choosedSize: int = 0
+var numberGenerated: int = 0
+var choosedSize: int = 2
 
 
 @onready var tileScene: PackedScene = load("res://map/tile.tscn")
@@ -34,31 +35,59 @@ func _ready():
 
 func random_generator():
 	create_tiles_around(set_tile(Vector3.ZERO))
-	print(tiles.keys().size())
-	if tiles.keys().size() < genSizeSettings[choosedSize][2]:
-		print("create")
-		#create_tiles_around(find_low_neighbor_tile(tiles[Vector3.ZERO]), 1)
+	while tiles.keys().size() < genSizeSettings[choosedSize][2]:
+		connect_neighbors()
+		var arr = find_low_neighbor_tile()
+		create_tiles_around(arr[randi_range(0,arr.size()-1)])
 
-func find_low_neighbor_tile(tile):
-	var size = tile.connectedTiles.size()
-	#for 
+func find_low_neighbor_tile():
+	var minTile: Array
+	minTile.append(tiles[Vector3.ZERO])
+	for tile in tiles.values():
+		if tile.connectedTiles.size() == minTile[0].connectedTiles.size():
+			minTile.append(tile)
+		if tile.connectedTiles.size() < minTile[0].connectedTiles.size():
+			minTile.clear()
+			minTile.append(tile)
+	return minTile
+
+#func find_tile_lowest_coord(): # Не трогать, это проклятая часть кода
+	#var maxX = tiles[Vector3.ZERO]
+	#var maxY = tiles[Vector3.ZERO]
+	#var maxZ = tiles[Vector3.ZERO]
+	#var min
+	#for tile in tiles.values():
+		#if tile.tilePosition.x > maxX.tilePosition.x: maxX = tile
+		#if tile.tilePosition.y > maxY.tilePosition.y: maxY = tile
+		#if tile.tilePosition.z > maxZ.tilePosition.z: maxZ = tile
+	#if maxX.tilePosition.x < maxY.tilePosition.y and maxX.tilePosition.x < maxZ.tilePosition.z:
+		#min = maxX
+	#elif maxY.tilePosition.y < maxZ.tilePosition.z:
+		#min = maxY
+	#else: min = maxZ
+	#return min
 
 func create_tiles_around(tile):
-	if genSizeSettings[choosedSize][1] <= find_max_coord(tile.tilePosition):
-		return
+	if numberGenerated > genSizeSettings[choosedSize][3]: return
 	for neigTile in generate_neighbor_positions(tile.tilePosition):
+		if genSizeSettings[choosedSize][1] <= find_max_coord(neigTile):
+			continue
 		if find_max_coord(neigTile) <= genSizeSettings[choosedSize][0]:
 			if tiles.has(neigTile):
 				continue
 			create_tiles_around(set_tile(neigTile))
 			continue
-		if randf() > 0.85:
+		if randf() > (0.8):
+			if randf() > 0.6: continue
 			if tiles.has(neigTile):
 				continue
 			create_tiles_around(set_tile(neigTile))
 
 func find_max_coord(vec: Vector3):
 	return vec.x if vec.x > vec.y and vec.x > vec.z else vec.y if vec.y > vec.z else vec.z
+
+func find_min_coord(vec: Vector3):
+	return vec.x if vec.x < vec.y and vec.x < vec.z else vec.y if vec.y < vec.z else vec.z
 
 func connect_neighbors():
 	for tile in tiles.values():
@@ -132,6 +161,7 @@ func set_tile(pos: Vector3):
 	newTile.set_pos_label(pos)
 	newTile.tilePosition = pos
 	newTile.name = "Tile" + str(pos)
+	numberGenerated += 1
 	return newTile
 
 
