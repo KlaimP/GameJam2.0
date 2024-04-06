@@ -11,12 +11,17 @@ var sizeField = 7
 
 @onready var tile: PackedScene = load("res://map/tile.tscn")
 
+var tiles: Dictionary = {
+	
+}
 
 
 
 
 func _ready():
 	create_tile_field()
+
+
 
 
 
@@ -35,6 +40,7 @@ func create_tile_field():
 func set_tile(pos: Vector3):
 	var newTile = tile.instantiate()
 	add_child(newTile)
+	tiles[pos] = newTile
 	newTile.position = hex2world(pos)
 	newTile.set_pos_label(pos)
 
