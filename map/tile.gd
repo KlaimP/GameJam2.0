@@ -2,7 +2,7 @@ extends Area2D
 
 @onready var buildScene: PackedScene = load("res://components/Build.tscn")
 
-var lightPower: int = 0
+var lightPower: int = 1
 var building: Build
 var dark
 

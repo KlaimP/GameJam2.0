@@ -17,6 +17,6 @@ func set_build(value):
 		Type.CASTLE:
 			add_child(castle.instantiate())
 		Type.FACTORY:
-			pass
+			add_child(factory.instantiate())
 		Type.LUMINAIRE:
 			add_child(light.instantiate())
