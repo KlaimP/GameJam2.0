@@ -8,10 +8,6 @@ var building: Build
 var connectedTiles: Array
 
 
-func _ready():
-	set_build(1)
-
-
 func set_pos_label(pos: Vector3):
 	$Label.text = str(pos)
 
