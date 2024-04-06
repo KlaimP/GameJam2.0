@@ -7,13 +7,13 @@ var castle;
 
 
 func _ready():
+	EventBus.end_turn.connect(start_turn)
 	castle = EventBus.castle
 	work = working()
 
-func _process(delta):
+func start_turn():
 	if !work:
-		if working():
-			work = true
+		work=working()
 
 func working() -> bool:
 	var _get = castle.take_energy(energyConsum)

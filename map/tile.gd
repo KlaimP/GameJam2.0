@@ -30,3 +30,4 @@ func set_build(type: int):
 	building = newBuild
 	newBuild.position = Vector2.ZERO
 	newBuild.set_build(type)
+	EventBus.end_turn.emit()
