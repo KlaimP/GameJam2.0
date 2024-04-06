@@ -1,6 +1,6 @@
 extends Area2D
 
-@onready var buildScene: PackedScene = load("res://Components/Build.tscn")
+@onready var buildScene: PackedScene = load("res://components/Build.tscn")
 
 var lightPower: int = 0
 var building: Build
@@ -8,6 +8,8 @@ var building: Build
 var connectedTiles: Array
 
 
+func _ready():
+	set_build(1)
 
 
 func set_pos_label(pos: Vector3):
@@ -23,6 +25,7 @@ func set_build(type: int):
 	if type < 0 or type > 4:
 		return
 	var newBuild = buildScene.instantiate()
+	add_child(newBuild)
 	building = newBuild
 	newBuild.position = Vector2.ZERO
 	newBuild.set_build(type)
