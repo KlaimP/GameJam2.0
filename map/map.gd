@@ -18,8 +18,14 @@ var tiles: Dictionary
 
 func _ready():
 	create_tile_field()
+	connect_neighbors()
+
+
+
+func connect_neighbors():
 	for tile in tiles.values():
 		tile.connectedTiles = find_neighbors(tile.tilePosition)
+		tile.draw_line_to_tile()
 
 
 

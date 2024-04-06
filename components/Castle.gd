@@ -1,11 +1,13 @@
 extends Node2D
 
-var curMaterials = 10
-var maxEnergy = 5
-var consumedEnergy = 0
+var curMaterials := 10
+var maxEnergy := 5
+var consumedEnergy := 0
+var price := 2
 
 func _ready():
 	EventBus.castle = self
+	EventBus.end_turn.connect(func():EventBus.start_turn.emit())
 
 func add_materials(materials):
 	curMaterials += materials
@@ -13,6 +15,7 @@ func add_materials(materials):
 func take_materials(needed_materials):
 	if needed_materials > curMaterials:
 		return false
+	curMaterials-=needed_materials
 	return true
 
 func take_energy(needed_energy):

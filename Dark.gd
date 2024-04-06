@@ -1,6 +1,6 @@
 extends Node2D
 
-var dark := 0.5
+var dark := 2
 @onready var map = $"../Map"
 @onready var artInf = load("res://dark_2.tscn")
 @onready var artFutInf = load("res://dark_3.tscn")
