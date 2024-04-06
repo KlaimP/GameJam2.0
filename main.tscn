@@ -1,9 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://cekqs0p5phe45"]
+[gd_scene load_steps=6 format=3 uid="uid://bqepsxv2y24uo"]
 
 [ext_resource type="Script" path="res://map/map.gd" id="1_n1bfs"]
+[ext_resource type="Script" path="res://camera.gd" id="2_2xbfh"]
 [ext_resource type="Script" path="res://scripts/LabelEnergy.gd" id="2_mnvyg"]
-[ext_resource type="PackedScene" uid="uid://banikacfenxpm" path="res://components/BuildMenu.tscn" id="2_x1yqp"]
-[ext_resource type="Script" path="res://scripts/LabelMaterial.gd" id="3_gq00a"]
+[ext_resource type="PackedScene" uid="uid://dubcd60cprcpp" path="res://components/BuildMenu.tscn" id="2_x1yqp"]
 [ext_resource type="Script" path="res://Dark.gd" id="3_jrs5i"]
 
 [node name="Main" type="Node2D"]
@@ -12,6 +12,7 @@
 script = ExtResource("1_n1bfs")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+script = ExtResource("2_2xbfh")
 
 [node name="Control" type="Control" parent="Camera2D"]
 layout_mode = 3
@@ -24,20 +25,11 @@ grow_vertical = 2
 [node name="Label" type="Label" parent="Camera2D/Control"]
 layout_mode = 0
 offset_left = 472.0
-offset_top = -317.0
+offset_top = -319.0
 offset_right = 543.0
-offset_bottom = -294.0
+offset_bottom = -296.0
 text = "Energy: 0"
 script = ExtResource("2_mnvyg")
-
-[node name="Label2" type="Label" parent="Camera2D/Control"]
-layout_mode = 0
-offset_left = 472.0
-offset_top = -284.0
-offset_right = 543.0
-offset_bottom = -261.0
-text = "Energy: 0"
-script = ExtResource("3_gq00a")
 
 [node name="BuildMenu" parent="." instance=ExtResource("2_x1yqp")]
 visible = false
