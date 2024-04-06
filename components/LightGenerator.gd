@@ -2,7 +2,7 @@ extends Node2D
 
 var work := true
 var energyGeneration := 6
-var castle;
+var castle
 
 func _ready():
 	castle = EventBus.castle

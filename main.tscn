@@ -1,8 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bqepsxv2y24uo"]
+[gd_scene load_steps=5 format=3 uid="uid://cekqs0p5phe45"]
 
 [ext_resource type="Script" path="res://map/map.gd" id="1_n1bfs"]
 [ext_resource type="Script" path="res://scripts/LabelEnergy.gd" id="2_mnvyg"]
-[ext_resource type="PackedScene" path="res://components/BuildMenu.tscn" id="2_x1yqp"]
+[ext_resource type="PackedScene" uid="uid://banikacfenxpm" path="res://components/BuildMenu.tscn" id="2_x1yqp"]
 [ext_resource type="Script" path="res://Dark.gd" id="3_jrs5i"]
 
 [node name="Main" type="Node2D"]
