@@ -1,9 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://bqepsxv2y24uo"]
+[gd_scene load_steps=6 format=3 uid="uid://cekqs0p5phe45"]
 
 [ext_resource type="Script" path="res://map/map.gd" id="1_n1bfs"]
 [ext_resource type="Script" path="res://camera.gd" id="2_2xbfh"]
 [ext_resource type="Script" path="res://scripts/LabelEnergy.gd" id="2_mnvyg"]
-[ext_resource type="PackedScene" uid="uid://dubcd60cprcpp" path="res://components/BuildMenu.tscn" id="2_x1yqp"]
+[ext_resource type="PackedScene" uid="uid://banikacfenxpm" path="res://components/BuildMenu.tscn" id="2_x1yqp"]
 [ext_resource type="Script" path="res://Dark.gd" id="3_jrs5i"]
 
 [node name="Main" type="Node2D"]
@@ -28,6 +28,14 @@ offset_left = 472.0
 offset_top = -319.0
 offset_right = 543.0
 offset_bottom = -296.0
+text = "Energy: 0"
+script = ExtResource("2_mnvyg")
+
+[node name="Label2" type="Label" parent="Camera2D/Control"]
+offset_left = 474.0
+offset_top = -285.0
+offset_right = 545.0
+offset_bottom = -262.0
 text = "Energy: 0"
 script = ExtResource("2_mnvyg")
 

@@ -10,3 +10,6 @@ func _ready():
 
 func working():
 	castle.add_energy(energyGeneration)
+
+func destroyed():
+	castle.add_energy(-energyGeneration)

@@ -10,13 +10,14 @@ var tilePosition: Vector3
 
 var connectedTiles: Array
 
-var isYourTurn: bool = false
+var isYourTurn: bool = true
 
 
 
 
 func _ready():
 	EventBus.end_turn.connect(func(): isYourTurn = false)
+	EventBus.start_turn.connect(func(): isYourTurn = true)
 
 func draw_line_to_tile():
 	lineToTile.points.clear()
@@ -46,5 +47,6 @@ func set_build(type: int):
 	add_child(newBuild)
 	building = newBuild
 	newBuild.position = Vector2.ZERO
-	newBuild.set_build(type)
 	EventBus.end_turn.emit()
+	newBuild.set_build(type)
+	
