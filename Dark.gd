@@ -2,19 +2,27 @@ extends Node2D
 
 var dark := 0.5
 @onready var map = $"../Map"
-@onready var art = load("res://dark_2.tscn")
+@onready var artInf = load("res://dark_2.tscn")
+@onready var artFutInf = load("res://dark_3.tscn")
+
 
 var arr: Array
+var futureInfectedTiles: Array
 
 func _ready():
 	EventBus.end_turn.connect(future_infect)
 	infect(map.tiles[Vector3(0, 0, 6)])
 
 func infect(tile):
-	var infectedTile = art.instantiate()
+	var infectedTile = artInf.instantiate()
 	tile.add_child(infectedTile)
 	tile.dark = infectedTile
 	arr.append(tile)
 
 func future_infect():
-	pass
+	for i in arr:
+		for j in map.find_neighbors(i):
+			if j.lightPower < dark:
+				var futureInfectedTile = artFutInf.instantiate()
+				j.add_child(futureInfectedTile)
+				futureInfectedTiles.append(j)
