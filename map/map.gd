@@ -21,6 +21,11 @@ func _ready():
 
 
 
+func find_neighbors(pos: Vector3) -> Array[Vector3]:
+	var arr: Array[Vector3]
+	
+	return arr
+
 
 
 
@@ -42,6 +47,7 @@ func set_tile(pos: Vector3):
 	tiles[pos] = newTile
 	newTile.position = hex2world(pos)
 	newTile.set_pos_label(pos)
+	newTile.name = "Tile" + str(pos)
 
 
 
