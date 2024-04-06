@@ -7,9 +7,18 @@ var TILE_X_OFFSET: float = TILE_SIZE*2
 var TILE_Y_OFFSET: float = 52
 var TILE_XY_OFFSET: float = TILE_SIZE
 
-var sizeField = 7
+var sizeField = 9
 
-@onready var tile: PackedScene = load("res://map/tile.tscn")
+# Map Size: [Min  Diameter, Max Diameter, Minimum Number of Tiles]
+var genSizeSettings: Dictionary = {
+	0: [1, 4, 25],
+	1: [2, 6, 45],
+	2: [3, 8, 70]
+}
+var choosedSize: int = 0
+
+
+@onready var tileScene: PackedScene = load("res://map/tile.tscn")
 
 var tiles: Dictionary
 
@@ -17,10 +26,39 @@ var tiles: Dictionary
 
 
 func _ready():
-	create_tile_field()
+	random_generator()
 	connect_neighbors()
+	tiles[Vector3(0,0,0)].set_build(0)
 
 
+
+func random_generator():
+	create_tiles_around(set_tile(Vector3.ZERO))
+	print(tiles.keys().size())
+	if tiles.keys().size() < genSizeSettings[choosedSize][2]:
+		print("create")
+		#create_tiles_around(find_low_neighbor_tile(tiles[Vector3.ZERO]), 1)
+
+func find_low_neighbor_tile(tile):
+	var size = tile.connectedTiles.size()
+	#for 
+
+func create_tiles_around(tile):
+	if genSizeSettings[choosedSize][1] <= find_max_coord(tile.tilePosition):
+		return
+	for neigTile in generate_neighbor_positions(tile.tilePosition):
+		if find_max_coord(neigTile) <= genSizeSettings[choosedSize][0]:
+			if tiles.has(neigTile):
+				continue
+			create_tiles_around(set_tile(neigTile))
+			continue
+		if randf() > 0.85:
+			if tiles.has(neigTile):
+				continue
+			create_tiles_around(set_tile(neigTile))
+
+func find_max_coord(vec: Vector3):
+	return vec.x if vec.x > vec.y and vec.x > vec.z else vec.y if vec.y > vec.z else vec.z
 
 func connect_neighbors():
 	for tile in tiles.values():
@@ -28,6 +66,13 @@ func connect_neighbors():
 		tile.draw_line_to_tile()
 
 
+func generate_neighbor_positions(pos: Vector3) -> Array:
+	var arr: Array
+	for i in range(2):
+		arr.append(change_x(pos, i))
+		arr.append(change_y(pos, i))
+		arr.append(change_z(pos, i))
+	return arr
 
 func find_neighbors(pos: Vector3) -> Array:
 	var arr: Array
@@ -78,16 +123,16 @@ func create_tile_field():
 			set_tile(Vector3(i,k,0))
 			set_tile(Vector3(i,0,k))
 			set_tile(Vector3(0,i,k))
-	tiles[Vector3(0,0,0)].set_build(0)
 
 func set_tile(pos: Vector3):
-	var newTile = tile.instantiate()
+	var newTile = tileScene.instantiate()
 	add_child(newTile)
 	tiles[pos] = newTile
 	newTile.position = hex2world(pos)
 	newTile.set_pos_label(pos)
 	newTile.tilePosition = pos
 	newTile.name = "Tile" + str(pos)
+	return newTile
 
 
 

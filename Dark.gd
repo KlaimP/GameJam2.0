@@ -11,7 +11,7 @@ var futureInfectedTiles: Array
 
 func _ready():
 	EventBus.end_turn.connect(future_infect)
-	infect(map.tiles[Vector3(0, 0, 6)])
+	#infect(map.tiles[Vector3(0, 0, 6)])
 
 func infect(tile):
 	var infectedTile = artInf.instantiate()
