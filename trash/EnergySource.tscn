@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bbkwsxjx3yq2r"]
+
+[ext_resource type="Script" path="res://trash/EnergySource.gd" id="1_omg6v"]
+
+[node name="EnergySource" type="Node2D"]
+script = ExtResource("1_omg6v")
