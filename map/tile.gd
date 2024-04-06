@@ -5,6 +5,7 @@ extends Area2D
 var lightPower: int = 1
 var building: Build
 var dark
+var tilePosition: Vector3
 
 var connectedTiles: Array
 

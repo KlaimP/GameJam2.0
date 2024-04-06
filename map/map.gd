@@ -18,15 +18,48 @@ var tiles: Dictionary
 
 func _ready():
 	create_tile_field()
+	for tile in tiles.values():
+		tile.connectedTiles = find_neighbors(tile.tilePosition)
 
 
 
-func find_neighbors(pos: Vector3) -> Array[Vector3]:
-	var arr: Array[Vector3]
-	
+func find_neighbors(pos: Vector3) -> Array:
+	var arr: Array
+	for i in range(2):
+		if(tiles.has(change_x(pos, i))): arr.append(tiles[change_x(pos, i)])
+		if(tiles.has(change_y(pos, i))): arr.append(tiles[change_y(pos, i)])
+		if(tiles.has(change_z(pos, i))): arr.append(tiles[change_z(pos, i)])
 	return arr
 
+func change_x(pos: Vector3, positiv: bool) -> Vector3:
+	var vec: Vector3
+	if positiv:
+		if pos.x > 0 or (pos.y == 0 or pos.z == 0): vec = Vector3(pos.x+1, pos.y, pos.z)
+		else: vec = Vector3(pos.x, pos.y-1, pos.z-1)
+	else:
+		if pos.x > 0: vec = Vector3(pos.x-1, pos.y, pos.z)
+		else: vec = Vector3(pos.x, pos.y+1, pos.z+1)
+	return vec
 
+func change_y(pos: Vector3, positiv: bool) -> Vector3:
+	var vec: Vector3
+	if positiv:
+		if pos.y > 0 or (pos.x == 0 or pos.z == 0): vec = Vector3(pos.x, pos.y+1, pos.z)
+		else: vec = Vector3(pos.x-1, pos.y, pos.z-1)
+	else:
+		if pos.y > 0: vec = Vector3(pos.x, pos.y-1, pos.z)
+		else: vec = Vector3(pos.x+1, pos.y, pos.z+1)
+	return vec
+
+func change_z(pos: Vector3, positiv: bool) -> Vector3:
+	var vec: Vector3
+	if positiv:
+		if pos.z > 0 or (pos.x == 0 or pos.y == 0): vec = Vector3(pos.x, pos.y, pos.z+1)
+		else: vec = Vector3(pos.x-1, pos.y-1, pos.z)
+	else:
+		if pos.z > 0: vec = Vector3(pos.x, pos.y, pos.z-1)
+		else: vec = Vector3(pos.x+1, pos.y+1, pos.z)
+	return vec
 
 
 func create_tile_field():
@@ -47,6 +80,7 @@ func set_tile(pos: Vector3):
 	tiles[pos] = newTile
 	newTile.position = hex2world(pos)
 	newTile.set_pos_label(pos)
+	newTile.tilePosition = pos
 	newTile.name = "Tile" + str(pos)
 
 
