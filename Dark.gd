@@ -21,7 +21,7 @@ func infect(tile):
 
 func future_infect():
 	for i in arr:
-		for j in map.find_neighbors(i):
+		for j in map.find_neighbors(i.tilePosition):
 			if j.lightPower < dark:
 				var futureInfectedTile = artFutInf.instantiate()
 				j.add_child(futureInfectedTile)
