@@ -31,6 +31,14 @@ offset_bottom = -296.0
 text = "Energy: 0"
 script = ExtResource("2_mnvyg")
 
+[node name="Label2" type="Label" parent="Camera2D/Control"]
+offset_left = 474.0
+offset_top = -285.0
+offset_right = 545.0
+offset_bottom = -262.0
+text = "Energy: 0"
+script = ExtResource("2_mnvyg")
+
 [node name="BuildMenu" parent="." instance=ExtResource("2_x1yqp")]
 visible = false
 

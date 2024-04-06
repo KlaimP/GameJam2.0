@@ -6,7 +6,7 @@ var castle
 
 func _ready():
 	castle = EventBus.castle
-	EventBus.start_turn.connect(working())
+	working()
 
 func working():
 	castle.add_energy(energyGeneration)
