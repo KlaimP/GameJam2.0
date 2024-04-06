@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bqepsxv2y24uo"]
+[gd_scene load_steps=4 format=3 uid="uid://bqepsxv2y24uo"]
 
 [ext_resource type="Script" path="res://map/map.gd" id="1_n1bfs"]
 [ext_resource type="PackedScene" path="res://components/BuildMenu.tscn" id="2_x1yqp"]
+[ext_resource type="Script" path="res://Dark.gd" id="3_jrs5i"]
 
 [node name="Main" type="Node2D"]
 
@@ -12,3 +13,6 @@ script = ExtResource("1_n1bfs")
 
 [node name="BuildMenu" parent="." instance=ExtResource("2_x1yqp")]
 visible = false
+
+[node name="Dark" type="Node2D" parent="."]
+script = ExtResource("3_jrs5i")
