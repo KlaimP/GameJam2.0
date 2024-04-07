@@ -64,8 +64,8 @@ func set_center():
 func set_zoom_settings():
 	var sumX = abs(edgeLeft) + abs(edgeRight)
 	var sumY = abs(edgeUp) + abs(edgeDown)
-	var max = sumX if sumX > sumY else sumY
-	zoomMax = screenResolution.x / max
+	var maxVal = sumX if sumX > sumY else sumY
+	zoomMax = screenResolution.x / maxVal
 	zoomDefault = zoomMax
 	zoom = Vector2(zoomDefault, zoomDefault)
 	check_position()

@@ -1,6 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://bqepsxv2y24uo"]
 
 [ext_resource type="Script" path="res://map/map.gd" id="1_n1bfs"]
+[ext_resource type="Script" path="res://main.gd" id="1_vhywa"]
 [ext_resource type="Script" path="res://camera.gd" id="2_2xbfh"]
 [ext_resource type="FontFile" uid="uid://bquer5nna1u0l" path="res://font/ComicoroRu_0.ttf" id="2_gsyf2"]
 [ext_resource type="Script" path="res://scripts/LabelEnergy.gd" id="2_mnvyg"]
@@ -11,6 +12,7 @@
 [ext_resource type="Script" path="res://SkipTurnButton.gd" id="4_qmleu"]
 
 [node name="Main" type="Node2D"]
+script = ExtResource("1_vhywa")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 z_index = 100

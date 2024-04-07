@@ -3,7 +3,10 @@ extends Node
 var castle
 var dark
 
-
+signal take_castle(node)
+signal set_light
+signal take_dark(node)
+signal light
 signal calculate_edges(arr)
 
 signal open_buid_menu(tile)

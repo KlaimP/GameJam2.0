@@ -24,7 +24,7 @@ func set_build(value):
 			build = newBuild
 			add_child(newBuild)
 			newBuild.tile = get_parent()
-			newBuild.light_around(1)
+			newBuild.light_around()
 		Type.FACTORY:
 			var newBuild = factory.instantiate()
 			build = newBuild
@@ -34,7 +34,7 @@ func set_build(value):
 			build = newBuild
 			add_child(newBuild)
 			newBuild.tile = get_parent()
-			newBuild.light_around(1)
+			newBuild.light_around()
 		Type.GENERATOR:
 			var newBuild = generator.instantiate()
 			build = newBuild

@@ -1,11 +1,12 @@
 extends Node2D
 
 @onready var map = $"../Map"
-@onready var darkScene = load("res://dark.tscn")
+@onready var darkScene = load("res://Dark.tscn")
 @onready var futureDarkScene = load("res://FutureDark.tscn")
 
-var darkPower: float = 0.5
-var futureInfectChance = 0.7
+var darkPower: float = 0.1
+var darkPowerChange: float = 0.1
+var futureInfectChance = 0.4
 var infectChance = 0.0
 
 var playedTurns = 0
@@ -17,7 +18,7 @@ var futureInfectedTiles: Array
 
 func _ready():
 	EventBus.dark = self
-	EventBus.end_turn.connect(infect)
+	EventBus.take_dark.emit(self)
 	first_infection()
 	future_infected()
 
@@ -34,12 +35,18 @@ func first_infection():
 
 func infect():
 	playedTurns += 1
-	darkPower += playedTurns%10 * 0.5
+	darkPower = int(playedTurns/10 + 1) * darkPowerChange
+	for tile in infectedTiles:
+		if tile.lightPower > calculate_dark(tile):
+			destroy_infection(tile)
+	for tile in futureInfectedTiles:
+		if tile.lightPower > calculate_dark(tile):
+			destroy_infection(tile)
 	for tile in futureInfectedTiles:
 		if tile.lightPower < calculate_dark(tile):
 			if randf() < infectChance: continue
 			infect_tile(tile)
-	var newArr: Array
+	var newArr: Array = []
 	for tile in futureInfectedTiles:
 		if tile.futureDark != null: newArr.append(tile)
 	futureInfectedTiles.clear()
@@ -52,7 +59,7 @@ func future_infected():
 			if neigh.dark != null: continue
 			if neigh.futureDark != null: continue
 			if neigh.lightPower < calculate_dark(neigh):
-				if randf() < futureInfectChance: continue
+				if randf() > futureInfectChance: continue
 				future_infect_tile(neigh)
 	EventBus.start_turn.emit()
 
