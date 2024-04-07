@@ -11,7 +11,7 @@ func _ready():
 
 
 func win():
-	pass
+	get_tree().change_scene_to_file("res://win_scene.tscn")
 
 
 func end_turn():
