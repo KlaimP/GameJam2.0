@@ -74,6 +74,13 @@ theme_override_font_sizes/font_size = 48
 text = "Skip Turn"
 script = ExtResource("4_qmleu")
 
+[node name="PauseMenu" type="ColorRect" parent="Camera2D/UI"]
+offset_left = -450.0
+offset_top = -300.0
+offset_right = 450.0
+offset_bottom = 300.0
+color = Color(0.207843, 0.207843, 0.207843, 0.278431)
+
 [node name="Map" type="Node2D" parent="."]
 script = ExtResource("1_n1bfs")
 
