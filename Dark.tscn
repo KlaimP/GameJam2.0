@@ -1,9 +1,8 @@
-[gd_scene format=3 uid="uid://mu6n0aic5c0k"]
+[gd_scene format=3 uid="uid://bvve7um2glufk"]
 
-[node name="dark_3" type="Node2D"]
+[node name="Dark" type="Node2D"]
 
 [node name="ColorRect" type="ColorRect" parent="."]
-modulate = Color(1, 0, 0, 1)
 offset_left = -20.0
 offset_top = -20.0
 offset_right = 20.0
