@@ -5,8 +5,13 @@ var castle
 
 
 func _ready():
+	EventBus.win.connect(win)
 	EventBus.end_turn.connect(end_turn)
 	castle = EventBus.castle
+
+
+func win():
+	pass
 
 
 func end_turn():

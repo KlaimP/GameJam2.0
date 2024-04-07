@@ -7,8 +7,8 @@ var neededEnergy := 1
 var castle
 
 var level = 0
-var levelMax = 3
-var upgradeCost = [3,5,6]
+var levelMax = 2
+var upgradeCost = [3,5]
 
 var lightPower = 1
 
@@ -39,7 +39,10 @@ func upgrade():
 		lightPower += 1
 		$LevelLabel.text = str(level + 1)
 		EventBus.end_turn.emit()
-		light_around()
+		tile.change_light(0)
+		for neigh in tile.connectedTiles:
+			neigh.change_light(0)
+		if level >= levelMax: $Button.hide()
 
 
 func work():
@@ -49,6 +52,7 @@ func work():
 
 func _on_mouse_entered():
 	$LevelLabel.show()
+	if level >= levelMax: return
 	$Button.show()
 
 
