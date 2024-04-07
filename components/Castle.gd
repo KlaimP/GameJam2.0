@@ -5,13 +5,14 @@ var maxEnergy := 5
 var consumedEnergy := 0
 var playedTurns = 0
 
+var turnsToWin = 100
+
 var energyConsumers: Array
 
 var lightPower = 2
 var tile
 
 func _ready():
-	EventBus.light.connect(light_around)
 	EventBus.castle = self
 
 
@@ -71,6 +72,8 @@ func change_labels():
 
 
 func start_turn():
+	if playedTurns > turnsToWin:
+		EventBus.win.emit()
 	change_labels()
 	light_around()
 	take_energy()

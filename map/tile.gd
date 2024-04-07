@@ -48,10 +48,10 @@ func change_light(value):
 
 func check_dark():
 	if dark != null:
-		if darkNode.calculate_dark(self) <= lightPower:
+		if lightPower > 0:
 			darkNode.destroy_infection(self)
 	if futureDark != null:
-		if darkNode.calculate_dark(self) <= lightPower:
+		if lightPower > 0:
 			darkNode.destroy_infection(self)
 				
 

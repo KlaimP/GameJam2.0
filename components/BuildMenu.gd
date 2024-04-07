@@ -6,6 +6,7 @@ var price = [2,2,3]
 var castle
 
 func _ready():
+	EventBus.end_turn.connect(func(): hide())
 	EventBus.open_buid_menu.connect(open_build_menu)
 	castle = EventBus.castle
 

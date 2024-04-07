@@ -6,7 +6,7 @@ extends Node2D
 
 var darkPower: float = 0.1
 var darkPowerChange: float = 0.1
-var futureInfectChance = 0.4
+var futureInfectChance = 0.3
 var infectChance = 0.0
 
 var playedTurns = 0
@@ -34,13 +34,15 @@ func first_infection():
 
 
 func infect():
+	if infectedTiles.size() == 0:
+		EventBus.win.emit()
 	playedTurns += 1
 	darkPower = int(playedTurns/10 + 1) * darkPowerChange
 	for tile in infectedTiles:
-		if tile.lightPower > calculate_dark(tile):
+		if tile.lightPower > 0:
 			destroy_infection(tile)
 	for tile in futureInfectedTiles:
-		if tile.lightPower > calculate_dark(tile):
+		if tile.lightPower > 0:
 			destroy_infection(tile)
 	for tile in futureInfectedTiles:
 		if tile.lightPower < calculate_dark(tile):
@@ -65,14 +67,14 @@ func future_infected():
 
 func destroy_infection(tile):
 	if tile.futureDark != null:
+		futureInfectedTiles.erase(tile)
 		tile.futureDark.queue_free()
 		tile.futureDark = null
-		futureInfectedTiles.erase(tile)
 		return
 	if tile.dark != null:
+		infectedTiles.erase(tile)
 		tile.dark.queue_free()
 		tile.dark = null
-		infectedTiles.erase(tile)
 		return
 
 
