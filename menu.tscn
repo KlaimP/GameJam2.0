@@ -12,9 +12,9 @@ script = ExtResource("1_hg8uj")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 0
-offset_left = 45.0
+offset_left = 60.0
 offset_top = 450.0
-offset_right = 204.0
+offset_right = 167.0
 offset_bottom = 530.0
 scale = Vector2(2.495, 2.495)
 
