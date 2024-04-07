@@ -16,6 +16,7 @@ var futureInfectedTiles: Array
 
 
 func _ready():
+	EventBus.dark = self
 	EventBus.end_turn.connect(infect)
 	first_infection()
 	future_infected()
@@ -29,7 +30,6 @@ func first_infection():
 			maxCount = pos.x + pos.y + pos.z
 			maxTile = Vector3(pos.x, pos.y, pos.z)
 	infect_tile(map.tiles[Vector3(maxTile)])
-	#infect_tile(map.tiles[Vector3(maxTile)].connectedTiles[0])
 
 
 func infect():
@@ -55,6 +55,18 @@ func future_infected():
 				if randf() < futureInfectChance: continue
 				future_infect_tile(neigh)
 	EventBus.start_turn.emit()
+
+func destroy_infection(tile):
+	if tile.futureDark != null:
+		tile.futureDark.queue_free()
+		tile.futureDark = null
+		futureInfectedTiles.erase(tile)
+		return
+	if tile.dark != null:
+		tile.dark.queue_free()
+		tile.dark = null
+		infectedTiles.erase(tile)
+		return
 
 
 func calculate_dark(tile) -> float:

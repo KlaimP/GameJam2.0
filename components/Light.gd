@@ -28,7 +28,8 @@ func light_around(value):
 func start_turn():
 	if !work:
 		work = working()
-		light_around(1)
+		if work:
+			light_around(1)
 		
 		
 

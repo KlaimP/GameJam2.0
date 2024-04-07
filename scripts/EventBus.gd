@@ -1,6 +1,7 @@
 extends Node
 
 var castle
+var dark
 
 
 signal calculate_edges(arr)

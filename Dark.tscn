@@ -3,17 +3,18 @@
 [ext_resource type="Shader" path="res://Dark.gdshader" id="1_nukq5"]
 
 [sub_resource type="Gradient" id="Gradient_itq0j"]
-offsets = PackedFloat32Array(0, 0.163934, 0.295082, 0.45082, 1)
-colors = PackedColorArray(0.117647, 0, 0.0980392, 0, 0.0700954, 2.42459e-06, 0.0599594, 1, 0.0583852, 4.67169e-06, 0.060788, 1, 0.0865521, 2.93447e-06, 0.0733103, 1, 0, 0, 0, 1)
+offsets = PackedFloat32Array(0.102857, 0.182857, 0.25, 0.3, 0.35, 0.685714, 1)
+colors = PackedColorArray(0.117647, 0, 0.0980392, 0, 0.127492, 0.000118528, 0.197527, 1, 0, 0, 0, 1, 0.0208774, 1.54169e-08, 0.0079146, 0.760784, 0.0865521, 2.93447e-06, 0.0733103, 1, 0, 0, 0, 0.584314, 0, 0, 0, 1)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_dj5in"]
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_7ojna"]
 gradient = SubResource("Gradient_itq0j")
 
 [sub_resource type="Gradient" id="Gradient_3vfax"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_yomnm"]
+frequency = 0.015
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_bx6wy"]
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_vq7tr"]
 seamless = true
 color_ramp = SubResource("Gradient_3vfax")
 noise = SubResource("FastNoiseLite_yomnm")
@@ -24,7 +25,7 @@ colors = PackedColorArray(0, 0, 0, 1, 0.696721, 0.696721, 0.696721, 1, 1, 1, 1, 
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_6cptl"]
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ggt4x"]
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_glhrr"]
 seamless = true
 color_ramp = SubResource("Gradient_bti5j")
 noise = SubResource("FastNoiseLite_6cptl")
@@ -33,22 +34,21 @@ noise = SubResource("FastNoiseLite_6cptl")
 shader = ExtResource("1_nukq5")
 shader_parameter/scroll = Vector2(0.03, 0.34)
 shader_parameter/scroll2 = Vector2(0.2, 0.2)
-shader_parameter/noise = SubResource("NoiseTexture2D_bx6wy")
-shader_parameter/noise2 = SubResource("NoiseTexture2D_ggt4x")
-shader_parameter/colorTexture = SubResource("GradientTexture2D_dj5in")
+shader_parameter/noise = SubResource("NoiseTexture2D_vq7tr")
+shader_parameter/noise2 = SubResource("NoiseTexture2D_glhrr")
+shader_parameter/colorTexture = SubResource("GradientTexture2D_7ojna")
 
-[sub_resource type="Gradient" id="Gradient_aj7js"]
+[sub_resource type="Gradient" id="Gradient_6es8k"]
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_es0vx"]
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_d74oe"]
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_y72nn"]
-color_ramp = SubResource("Gradient_aj7js")
-noise = SubResource("FastNoiseLite_es0vx")
+color_ramp = SubResource("Gradient_6es8k")
+noise = SubResource("FastNoiseLite_d74oe")
 
 [node name="Dark" type="Node2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_6e8r4")
-position = Vector2(0, -5.72205e-06)
-scale = Vector2(0.172146, 0.158375)
+scale = Vector2(0.2, 0.2)
 texture = SubResource("NoiseTexture2D_y72nn")
