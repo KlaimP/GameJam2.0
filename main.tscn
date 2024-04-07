@@ -75,6 +75,8 @@ text = "Skip Turn"
 script = ExtResource("4_qmleu")
 
 [node name="PauseMenu" type="ColorRect" parent="Camera2D/UI"]
+visible = false
+layout_mode = 0
 offset_left = -450.0
 offset_top = -300.0
 offset_right = 450.0
