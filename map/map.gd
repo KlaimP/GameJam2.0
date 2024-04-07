@@ -9,14 +9,18 @@ var TILE_XY_OFFSET: float = TILE_SIZE
 
 var sizeField = 9
 
+var chanceGenerate = 0.8
+var chanceSkip = 0.4
+
 # Map Size: [Min  Diameter, Max Diameter, Min Number of Tiles, Max Number of Tiles]
 var genSizeSettings: Dictionary = {
 	0: [1, 4, 32, 40],
 	1: [2, 6, 45, 80],
-	2: [3, 8, 90, 120]
+	2: [4, 10, 90, 120],
+	3: [7, 15, 200, 350]
 }
 var numberGenerated: int = 0
-var choosedSize: int = 2
+var choosedSize: int = 1
 
 
 @onready var tileScene: PackedScene = load("res://map/tile.tscn")
@@ -78,8 +82,8 @@ func create_tiles_around(tile):
 				continue
 			create_tiles_around(set_tile(neigTile))
 			continue
-		if randf() > (0.8):
-			if randf() > 0.6: continue
+		if randf() < chanceGenerate:
+			if randf() > chanceSkip: continue
 			if tiles.has(neigTile):
 				continue
 			create_tiles_around(set_tile(neigTile))
