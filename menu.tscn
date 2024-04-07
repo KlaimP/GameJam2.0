@@ -1,14 +1,21 @@
-[gd_scene load_steps=5 format=3 uid="uid://bvdnoqkwqs1j"]
+[gd_scene load_steps=6 format=3 uid="uid://bvdnoqkwqs1j"]
 
 [ext_resource type="Script" path="res://scripts/Menu.gd" id="1_hg8uj"]
 [ext_resource type="Texture2D" uid="uid://dumumurpe3o78" path="res://assets/logo.png" id="1_xt1l2"]
 [ext_resource type="Texture2D" uid="uid://cb28n1mhfva4o" path="res://assets/miniCat.png" id="2_8cj5h"]
 [ext_resource type="FontFile" uid="uid://bquer5nna1u0l" path="res://font/ComicoroRu_0.ttf" id="2_jxc3k"]
+[ext_resource type="Texture2D" uid="uid://bgcv6d5x3c5l6" path="res://assets/menu.png" id="2_udulq"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_hg8uj")
+
+[node name="Menu" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(600, 400)
+scale = Vector2(10, 10)
+texture = ExtResource("2_udulq")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 0
@@ -38,12 +45,14 @@ text = "Exit
 "
 
 [node name="Logo" type="Sprite2D" parent="."]
+visible = false
 texture_filter = 1
 position = Vector2(340, 197)
 scale = Vector2(10, 10)
 texture = ExtResource("1_xt1l2")
 
 [node name="MiniCat" type="Sprite2D" parent="."]
+visible = false
 texture_filter = 1
 position = Vector2(509, 146)
 scale = Vector2(10, 10)
