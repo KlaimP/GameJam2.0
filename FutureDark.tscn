@@ -1,10 +1,55 @@
-[gd_scene format=3 uid="uid://mu6n0aic5c0k"]
+[gd_scene load_steps=14 format=3 uid="uid://mu6n0aic5c0k"]
+
+[ext_resource type="Shader" uid="uid://6w7c63e56lon" path="res://FutureDarkShader.tres" id="1_rpodo"]
+
+[sub_resource type="Gradient" id="Gradient_lb4x5"]
+offsets = PackedFloat32Array(0.0628571, 0.222857, 0.365714, 0.651429, 0.765714)
+colors = PackedColorArray(0.0968115, 0.0968115, 0.0968115, 0.14902, 0.358468, 0.358468, 0.358468, 0.0980392, 0.936659, 0.891883, 0.960947, 1, 0, 0, 0, 0.0705882, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_dj5in"]
+gradient = SubResource("Gradient_lb4x5")
+
+[sub_resource type="Gradient" id="Gradient_2er78"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_sw74q"]
+noise_type = 5
+frequency = 0.015
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_bx6wy"]
+seamless = true
+color_ramp = SubResource("Gradient_2er78")
+noise = SubResource("FastNoiseLite_sw74q")
+
+[sub_resource type="Gradient" id="Gradient_jejub"]
+offsets = PackedFloat32Array(0.0655738, 0.213115, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.696721, 0.696721, 0.696721, 1, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_eom8g"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ggt4x"]
+seamless = true
+color_ramp = SubResource("Gradient_jejub")
+noise = SubResource("FastNoiseLite_eom8g")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bcrh6"]
+shader = ExtResource("1_rpodo")
+shader_parameter/scroll = Vector2(0.03, 0.34)
+shader_parameter/scroll2 = Vector2(0.2, 0.2)
+shader_parameter/noise = SubResource("NoiseTexture2D_bx6wy")
+shader_parameter/noise2 = SubResource("NoiseTexture2D_ggt4x")
+shader_parameter/colorTexture = SubResource("GradientTexture2D_dj5in")
+
+[sub_resource type="Gradient" id="Gradient_aj7js"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_es0vx"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_em47p"]
+color_ramp = SubResource("Gradient_aj7js")
+noise = SubResource("FastNoiseLite_es0vx")
 
 [node name="FutureDark" type="Node2D"]
 
-[node name="ColorRect" type="ColorRect" parent="."]
-modulate = Color(1, 0, 0, 1)
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_bcrh6")
+scale = Vector2(0.2, 0.2)
+texture = SubResource("NoiseTexture2D_em47p")
