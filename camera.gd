@@ -1,7 +1,7 @@
 extends Camera2D
 
 
-var zoomStep: float = 0.75
+var zoomStep: float = 0.9
 var zoomMax: float = 0.75
 var zoomMin: float = 2.0
 
@@ -16,7 +16,15 @@ var gameCenter: Vector2
 
 var zoomDefault: float = 1.5
 
-
+@onready var buttonSkipTurn: Button = $UI/SkipTurnButton
+@onready var labelEnegrgy: Label = $UI/Energy
+@onready var labelMaterial: Label = $UI/Materials
+@onready var labelTurn: Label = $UI/TurnLabel
+@onready var buildMenu = $"../BuildMenu"
+var buttonSkipTurnPos: Vector2 = Vector2(340, 315)
+var labelEnegrgyPos: Vector2 = Vector2(220, -400)
+var labelMaterialPos: Vector2 = Vector2(420, -400)
+var labelTurnPos: Vector2 = Vector2(-580, -400)
 
 
 
@@ -25,6 +33,18 @@ func _ready() -> void:
 	EventBus.calculate_edges.connect(set_edges)
 	check_position()
 
+
+func set_ui():
+	var backZoom = Vector2(1/zoom.x, 1/zoom.y)
+	buildMenu.scale = backZoom
+	buttonSkipTurn.scale = backZoom
+	buttonSkipTurn.position = buttonSkipTurnPos * backZoom
+	labelEnegrgy.scale = backZoom
+	labelEnegrgy.position = labelEnegrgyPos * backZoom
+	labelMaterial.scale = backZoom
+	labelMaterial.position = labelMaterialPos * backZoom
+	labelTurn.scale = backZoom
+	labelTurn.position = labelTurnPos * backZoom
 
 func set_edges(arr: Array):
 	var posVec = arr[0]
@@ -35,6 +55,7 @@ func set_edges(arr: Array):
 	edgeDown = posVec.y + edgeOffset
 	set_center()
 	set_zoom_settings()
+	set_ui()
 
 func set_center():
 	gameCenter = Vector2((edgeLeft + edgeRight)/2, (edgeUp + edgeDown)/2)
@@ -95,12 +116,15 @@ func zoom_camera(zooming: int):
 	var mouse_pos = get_global_mouse_position()
 	
 	zoom *= pow(zoomStep, zooming)
+	set_ui()
 	
 	if zoom < Vector2(zoomMax, zoomMax):
 		zoom = Vector2(zoomMax, zoomMax)
+		set_ui()
 		return
 	if zoom > Vector2(zoomMin, zoomMin):
 		zoom = Vector2(zoomMin, zoomMin)
+		set_ui()
 		return
 	
 	position = lerp(position, mouse_pos, (zoomStep-1) * zooming)

@@ -8,6 +8,8 @@ var darkPower: float = 0.5
 var futureInfectChance = 0.7
 var infectChance = 0.0
 
+var playedTurns = 0
+
 var infectedTiles: Array
 var futureInfectedTiles: Array
 
@@ -31,6 +33,8 @@ func first_infection():
 
 
 func infect():
+	playedTurns += 1
+	darkPower += playedTurns%10 * 0.5
 	for tile in futureInfectedTiles:
 		if tile.lightPower < calculate_dark(tile):
 			if randf() < infectChance: continue
@@ -65,10 +69,14 @@ func infect_tile(tile):
 	if tile.futureDark != null:
 		tile.futureDark.queue_free()
 		tile.futureDark = null
+	if tile.building != null:
+		tile.building.destroy()
+		tile.building = null
 	var infectedTile = darkScene.instantiate()
 	tile.add_child(infectedTile)
 	tile.dark = infectedTile
 	infectedTiles.append(tile)
+	tile.set_light(-1)
 
 func future_infect_tile(tile):
 	var infectedTile = futureDarkScene.instantiate()

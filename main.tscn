@@ -1,20 +1,21 @@
-[gd_scene load_steps=8 format=3 uid="uid://bqepsxv2y24uo"]
+[gd_scene load_steps=9 format=3 uid="uid://bqepsxv2y24uo"]
 
 [ext_resource type="Script" path="res://map/map.gd" id="1_n1bfs"]
 [ext_resource type="Script" path="res://camera.gd" id="2_2xbfh"]
 [ext_resource type="Script" path="res://scripts/LabelEnergy.gd" id="2_mnvyg"]
-[ext_resource type="PackedScene" uid="uid://banikacfenxpm" path="res://components/BuildMenu.tscn" id="2_x1yqp"]
+[ext_resource type="PackedScene" uid="uid://dubcd60cprcpp" path="res://components/BuildMenu.tscn" id="2_x1yqp"]
 [ext_resource type="Script" path="res://scripts/LabelMaterial.gd" id="3_4ggbr"]
 [ext_resource type="Script" path="res://Dark.gd" id="3_jrs5i"]
+[ext_resource type="Script" path="res://TurnLabel.gd" id="4_q0d2s"]
 [ext_resource type="Script" path="res://SkipTurnButton.gd" id="4_qmleu"]
 
 [node name="Main" type="Node2D"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
+z_index = 100
 script = ExtResource("2_2xbfh")
 
 [node name="UI" type="Control" parent="Camera2D"]
-z_index = 2
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -24,27 +25,37 @@ grow_vertical = 2
 
 [node name="Energy" type="Label" parent="Camera2D/UI"]
 layout_mode = 0
-offset_left = 472.0
-offset_top = -319.0
-offset_right = 543.0
-offset_bottom = -296.0
+offset_left = 315.0
+offset_top = -389.0
+offset_right = 386.0
+offset_bottom = -366.0
+theme_override_font_sizes/font_size = 24
 text = "Energy: 0"
 script = ExtResource("2_mnvyg")
 
 [node name="Materials" type="Label" parent="Camera2D/UI"]
 layout_mode = 0
-offset_left = 474.0
-offset_top = -285.0
-offset_right = 545.0
-offset_bottom = -262.0
+offset_left = 178.0
+offset_top = -387.0
+offset_right = 269.0
+offset_bottom = -364.0
+theme_override_font_sizes/font_size = 24
 text = "Materials: 0"
 script = ExtResource("3_4ggbr")
 
+[node name="TurnLabel" type="Label" parent="Camera2D/UI"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 24
+text = "Turn 1"
+script = ExtResource("4_q0d2s")
+
 [node name="SkipTurnButton" type="Button" parent="Camera2D/UI"]
 layout_mode = 0
-offset_left = 140.0
+offset_left = 340.0
 offset_top = 315.0
-offset_right = 390.0
+offset_right = 590.0
 offset_bottom = 390.0
 theme_override_font_sizes/font_size = 48
 text = "Skip Turn"
@@ -53,10 +64,11 @@ script = ExtResource("4_qmleu")
 [node name="Map" type="Node2D" parent="."]
 script = ExtResource("1_n1bfs")
 
-[node name="BuildMenu" parent="." instance=ExtResource("2_x1yqp")]
-visible = false
-
 [node name="Dark" type="Node2D" parent="."]
 script = ExtResource("3_jrs5i")
+
+[node name="BuildMenu" parent="." instance=ExtResource("2_x1yqp")]
+visible = false
+z_index = 100
 
 [connection signal="pressed" from="Camera2D/UI/SkipTurnButton" to="Camera2D/UI/SkipTurnButton" method="_on_pressed"]

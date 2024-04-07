@@ -3,7 +3,7 @@ extends Area2D
 @onready var buildScene: PackedScene = load("res://components/Build.tscn")
 @onready var lineToTile: Line2D = $LineToTile
 
-var lightPower: float = 0
+var lightPower: int = 0
 var building: Build
 var dark
 var futureDark
@@ -19,6 +19,28 @@ var isYourTurn: bool = true
 func _ready():
 	EventBus.end_turn.connect(func(): isYourTurn = false)
 	EventBus.start_turn.connect(func(): isYourTurn = true)
+	$Sprite2D.texture = load("res://assets/tile_"+str(randi_range(1,3))+".png")
+	set_light(0)
+
+
+func set_light(value):
+	lightPower = -1 if value < -1 else 3 if value > 3 else value
+	change_color()
+
+func change_light(value):
+	lightPower += value
+	lightPower = -1 if lightPower < -1 else 3 if lightPower > 3 else lightPower
+	change_color()
+	
+
+func change_color():
+	match lightPower:
+		-1: $Sprite2D.modulate = Color(0.1,0.1,0.1,1.0)
+		0: $Sprite2D.modulate = Color(0.3, 0.3, 0.3, 1.0)
+		1: $Sprite2D.modulate = Color(0.6, 0.6, 0.6, 1.0)
+		2: $Sprite2D.modulate = Color(0.8, 0.8, 0.8, 1.0)
+		3: $Sprite2D.modulate = Color(1.0, 1.0, 1.0, 1.0)
+
 
 func draw_line_to_tile():
 	lineToTile.points.clear()

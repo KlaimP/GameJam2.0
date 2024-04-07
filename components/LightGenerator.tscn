@@ -1,6 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://b6if3cjqhfhsr"]
+[gd_scene load_steps=3 format=3 uid="uid://b6if3cjqhfhsr"]
 
 [ext_resource type="Script" path="res://components/LightGenerator.gd" id="1_acucl"]
+[ext_resource type="Texture2D" uid="uid://p0dte3ltkhkp" path="res://assets/generator.png" id="2_75uuj"]
 
 [node name="LightGenerator" type="Node2D"]
 script = ExtResource("1_acucl")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0, -18)
+scale = Vector2(2, 2)
+texture = ExtResource("2_75uuj")
