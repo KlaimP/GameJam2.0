@@ -2,8 +2,8 @@ extends Camera2D
 
 
 var zoomStep: float = 0.75
-var zoomMax: float = 2.0
-var zoomMin: float = 0.5
+var zoomMax: float = 0.75
+var zoomMin: float = 2.0
 
 var edgeLeft: float = -1000
 var edgeRight: float = 1000
@@ -12,9 +12,9 @@ var edgeDown: float = 1000
 var edgeOffset: float = 50
 
 var screenResolution: Vector2
-var screenCenter: Vector2
+var gameCenter: Vector2
 
-var zoomDefault: float = 1.0
+var zoomDefault: float = 1.5
 
 
 
@@ -22,9 +22,9 @@ var zoomDefault: float = 1.0
 
 func _ready() -> void: 
 	screenResolution = get_canvas_transform().get_origin() * 2
-	zoom = Vector2(zoomDefault, zoomDefault)
 	EventBus.calculate_edges.connect(set_edges)
 	check_position()
+
 
 func set_edges(arr: Array):
 	var posVec = arr[0]
@@ -33,6 +33,21 @@ func set_edges(arr: Array):
 	edgeRight = posVec.x + edgeOffset
 	edgeUp = negVec.y - edgeOffset
 	edgeDown = posVec.y + edgeOffset
+	set_center()
+	set_zoom_settings()
+
+func set_center():
+	gameCenter = Vector2((edgeLeft + edgeRight)/2, (edgeUp + edgeDown)/2)
+	position = gameCenter
+
+func set_zoom_settings():
+	var sumX = abs(edgeLeft) + abs(edgeRight)
+	var sumY = abs(edgeUp) + abs(edgeDown)
+	var max = sumX if sumX > sumY else sumY
+	zoomMax = screenResolution.x / max
+	zoomDefault = zoomMax
+	zoom = Vector2(zoomDefault, zoomDefault)
+	check_position()
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -81,10 +96,10 @@ func zoom_camera(zooming: int):
 	
 	zoom *= pow(zoomStep, zooming)
 	
-	if zoom > Vector2(zoomMax, zoomMax):
+	if zoom < Vector2(zoomMax, zoomMax):
 		zoom = Vector2(zoomMax, zoomMax)
 		return
-	if zoom < Vector2(zoomMin, zoomMin):
+	if zoom > Vector2(zoomMin, zoomMin):
 		zoom = Vector2(zoomMin, zoomMin)
 		return
 	
