@@ -55,6 +55,6 @@ texture = ExtResource("2_cgh2s")
 
 [node name="Sprite2D" type="Sprite2D" parent="Tile2"]
 material = SubResource("ShaderMaterial_6e8r4")
-position = Vector2(0, -1.56522)
+position = Vector2(18, 5.47826)
 scale = Vector2(0.123945, 0.123945)
 texture = SubResource("NoiseTexture2D_y72nn")
