@@ -37,6 +37,7 @@ func _ready():
 	connect_neighbors()
 	tiles[Vector3(0,0,0)].set_build(0)
 	EventBus.calculate_edges.emit(find_edges())
+	EventBus.start_turn.emit()
 
 
 
@@ -52,7 +53,7 @@ func random_generator():
 		create_tiles_around(arr[randi_range(0,arr.size()-1)])
 
 func find_low_neighbor_tile():
-	var minTile: Array
+	var minTile: Array = []
 	minTile.append(tiles[Vector3.ZERO])
 	for tile in tiles.values():
 		if tile.connectedTiles.size() == minTile[0].connectedTiles.size():
@@ -121,7 +122,7 @@ func connect_neighbors():
 
 
 func generate_neighbor_positions(pos: Vector3) -> Array:
-	var arr: Array
+	var arr: Array = []
 	for i in range(2):
 		arr.append(change_x(pos, i))
 		arr.append(change_y(pos, i))
@@ -129,7 +130,7 @@ func generate_neighbor_positions(pos: Vector3) -> Array:
 	return arr
 
 func find_neighbors(pos: Vector3) -> Array:
-	var arr: Array
+	var arr: Array = []
 	for i in range(2):
 		if(tiles.has(change_x(pos, i))): arr.append(tiles[change_x(pos, i)])
 		if(tiles.has(change_y(pos, i))): arr.append(tiles[change_y(pos, i)])

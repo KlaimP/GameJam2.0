@@ -2,38 +2,59 @@ extends Node2D
 
 var tile
 
-var work := false
-var levelLight := 1;
-var energyConsum := 1;
-var castle;
+var levelLight := 1
+var neededEnergy := 1
+var castle
+
+var level = 0
+var levelMax = 3
+var upgradeCost = [3,5,6]
 
 var lightPower = 1
 
 
 func _ready():
-	EventBus.start_turn.connect(start_turn)
+	EventBus.set_light.connect(func(): modulate = Color.DIM_GRAY)
 	castle = EventBus.castle
-	work = working()
+	castle.add_consumer(self)
+	$LevelLabel.text = str(level + 1)
+
 
 func destroy():
-	castle.return_energy(energyConsum)
-	light_around(-1)
+	castle.return_energy(self)
 	queue_free()
 
-func light_around(value):
-	tile.change_light(lightPower * value)
+
+func light_around():
+	tile.change_light(lightPower)
 	for neigh in tile.connectedTiles:
-		neigh.change_light(lightPower* value)
+		neigh.change_light(lightPower)
 
-func start_turn():
-	if !work:
-		work = working()
-		if work:
-			light_around(1)
-		
-		
 
-func working() -> bool:
-	var _get = castle.take_energy(energyConsum)
-	print("Take " + str(energyConsum) + " energy: " + str(_get))
-	return _get
+func upgrade():
+	if level >= levelMax: return
+	if castle.take_materials(upgradeCost[level]):
+		level += 1
+		neededEnergy += 1
+		lightPower += 1
+		$LevelLabel.text = str(level + 1)
+		EventBus.end_turn.emit()
+
+
+func work():
+	light_around()
+	modulate = Color.WHITE
+
+
+func _on_mouse_entered():
+	$LevelLabel.show()
+	$Button.show()
+
+
+func _on_mouse_exited():
+	$LevelLabel.hide()
+	$Button.hide()
+
+
+func _on_button_pressed():
+	upgrade()
