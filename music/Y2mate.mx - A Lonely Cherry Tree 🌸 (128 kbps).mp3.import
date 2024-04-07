@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://ys206ixeodsy"
+path="res://.godot/imported/Y2mate.mx - A Lonely Cherry Tree 🌸 (128 kbps).mp3-07552dbab4f8cf4cb68afb97c11dc12b.mp3str"
+
+[deps]
+
+source_file="res://music/Y2mate.mx - A Lonely Cherry Tree 🌸 (128 kbps).mp3"
+dest_files=["res://.godot/imported/Y2mate.mx - A Lonely Cherry Tree 🌸 (128 kbps).mp3-07552dbab4f8cf4cb68afb97c11dc12b.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

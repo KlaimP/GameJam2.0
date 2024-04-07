@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://blaqh1tny2pv0"]
+[gd_scene load_steps=9 format=3 uid="uid://blaqh1tny2pv0"]
 
 [ext_resource type="Script" path="res://Loose.gd" id="1_o6mr3"]
 [ext_resource type="FontFile" uid="uid://bquer5nna1u0l" path="res://font/ComicoroRu_0.ttf" id="2_6l0ys"]
 [ext_resource type="Texture2D" uid="uid://k54q6vywl23m" path="res://assets/loseMenu.png" id="3_qrdyv"]
+[ext_resource type="AudioStream" uid="uid://ys206ixeodsy" path="res://music/Y2mate.mx - A Lonely Cherry Tree 🌸 (128 kbps).mp3" id="4_ijobu"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vmknh"]
 
@@ -50,6 +51,10 @@ theme_override_styles/hover = SubResource("StyleBoxEmpty_t0flg")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_otrvj")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_qeoa8")
 text = "Main menu"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_ijobu")
+autoplay = true
 
 [connection signal="pressed" from="RestartButton" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="MainMenuButton" to="." method="_on_main_menu_button_pressed"]

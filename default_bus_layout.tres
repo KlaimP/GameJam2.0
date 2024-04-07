@@ -1,4 +1,9 @@
-[gd_resource type="AudioBusLayout" format=3 uid="uid://b1sjilwxepb6c"]
+[gd_resource type="AudioBusLayout" load_steps=2 format=3 uid="uid://b1sjilwxepb6c"]
+
+[sub_resource type="AudioEffectFilter" id="AudioEffectFilter_r6dhr"]
+resource_name = "Filter"
 
 [resource]
-bus/0/volume_db = 6.02
+bus/0/volume_db = 0.0694828
+bus/0/effect/0/effect = SubResource("AudioEffectFilter_r6dhr")
+bus/0/effect/0/enabled = true

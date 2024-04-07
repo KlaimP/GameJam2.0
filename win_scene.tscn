@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://xeb3ytc3g3w5"]
+[gd_scene load_steps=9 format=3 uid="uid://xeb3ytc3g3w5"]
 
 [ext_resource type="Script" path="res://WinScene.gd" id="1_nm64a"]
 [ext_resource type="FontFile" uid="uid://bquer5nna1u0l" path="res://font/ComicoroRu_0.ttf" id="2_bk1nf"]
 [ext_resource type="Texture2D" uid="uid://bcr3o346myoef" path="res://assets/winMenu.png" id="2_ytmp3"]
+[ext_resource type="AudioStream" uid="uid://hqp8ltli4iti" path="res://music/Y2mate.mx - Big Helmet (128 kbps).mp3" id="4_v5cej"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_doldb"]
 
@@ -49,6 +50,10 @@ theme_override_styles/hover = SubResource("StyleBoxEmpty_2p2ai")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_yes8d")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_ss3iv")
 text = "Restart"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_v5cej")
+autoplay = true
 
 [connection signal="pressed" from="ReturnToMainMenu" to="." method="_on_return_to_main_menu_pressed"]
 [connection signal="pressed" from="Restart" to="." method="_on_return_to_main_menu_2_pressed"]

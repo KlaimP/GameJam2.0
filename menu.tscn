@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://wwpfy26u6pq4"]
+[gd_scene load_steps=18 format=3 uid="uid://wwpfy26u6pq4"]
 
 [ext_resource type="Script" path="res://scripts/Menu.gd" id="1_hg8uj"]
 [ext_resource type="Texture2D" uid="uid://dumumurpe3o78" path="res://assets/logo.png" id="1_xt1l2"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://0qr7vmv2261v" path="res://assets/miniCat_2.png" id="6_3t2kg"]
 [ext_resource type="Texture2D" uid="uid://ivjptpoia8wn" path="res://assets/miniCat_3.png" id="7_nrss1"]
 [ext_resource type="Texture2D" uid="uid://b6gj6bd61ccv2" path="res://assets/miniCat_4.png" id="8_l1f17"]
+[ext_resource type="AudioStream" uid="uid://unvraeoycq6k" path="res://music/Y2mate.mx - An Ancient King 👑 (128 kbps).mp3" id="9_rou7t"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8etti"]
 
@@ -120,6 +121,33 @@ scale = Vector2(8, 8)
 sprite_frames = SubResource("SpriteFrames_rp77a")
 autoplay = "default"
 frame_progress = 0.741942
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_rou7t")
+autoplay = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="AudioStreamPlayer2D"]
+stream = ExtResource("9_rou7t")
+autoplay = true
+
+[node name="Label" type="Label" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = 760.0
+offset_top = 460.0
+offset_right = 1040.0
+offset_bottom = 740.0
+scale = Vector2(0.5, 0.5)
+theme_override_fonts/font = ExtResource("2_jxc3k")
+theme_override_font_sizes/font_size = 32
+text = "Game made by:
+Vladimir \"Favl9\" Stupin
+Arthur \"Klaim\" Pod'yapolskii
+Artem \"wiriks\" Kramar
+Vlad Guzey
+Kirill Biruk
+
+Music by: Y2mate"
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Tutorial" to="." method="_on_tutorial_pressed"]
