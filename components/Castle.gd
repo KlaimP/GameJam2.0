@@ -7,6 +7,8 @@ var price := 2
 
 func _ready():
 	EventBus.castle = self
+	EventBus.start_turn.connect(start_turn)
+	EventBus.end_turn.connect(end_turn)
 
 func add_materials(materials):
 	curMaterials += materials
@@ -28,3 +30,16 @@ func return_energy(towerEnergy):
 
 func add_energy(value):
 	maxEnergy += value
+
+func change_labels():
+	var energyLabel: Array
+	energyLabel.append(consumedEnergy)
+	energyLabel.append(maxEnergy)
+	EventBus.change_energy_label.emit(energyLabel)
+	EventBus.change_materials_label.emit(curMaterials)
+
+func start_turn():
+	change_labels()
+
+func end_turn():
+	change_labels()

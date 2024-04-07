@@ -75,30 +75,3 @@ func future_infect_tile(tile):
 	tile.add_child(infectedTile)
 	tile.futureDark = infectedTile
 	futureInfectedTiles.append(tile)
-
-#func end_turn():
-	#for i in futureInfectedTiles:
-		#if i.lightPower < dark:
-			#var infectedTile = darkScene.instantiate()
-			#i.add_child(infectedTile)
-			#i.dark = infectedTile
-			#arr.append(i)
-#
-#func _ready():
-	#EventBus.end_turn.connect(end_turn)
-	#infect(map.tiles[Vector3(0, 0, 6)])
-#
-#func infect(tile):
-	#var infectedTile = darkScene.instantiate()
-	#tile.add_child(infectedTile)
-	#tile.dark = infectedTile
-	#arr.append(tile)
-	#future_infect()
-#
-#func future_infect():
-	#for i in arr:
-		#for j in map.find_neighbors(i.tilePosition):
-			#if j.lightPower < dark:
-				#var futureInfectedTile = futureDarkScene.instantiate()
-				#j.add_child(futureInfectedTile)
-				#futureInfectedTiles.append(j)
