@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bqepsxv2y24uo"]
+[gd_scene load_steps=24 format=3 uid="uid://bqepsxv2y24uo"]
 
 [ext_resource type="Script" path="res://map/map.gd" id="1_n1bfs"]
 [ext_resource type="Script" path="res://main.gd" id="1_vhywa"]
@@ -10,6 +10,52 @@
 [ext_resource type="Script" path="res://Dark.gd" id="3_jrs5i"]
 [ext_resource type="Script" path="res://TurnLabel.gd" id="4_q0d2s"]
 [ext_resource type="Script" path="res://SkipTurnButton.gd" id="4_qmleu"]
+[ext_resource type="Shader" path="res://shaders/back.gdshader" id="11_epf3o"]
+
+[sub_resource type="Gradient" id="Gradient_fu22i"]
+offsets = PackedFloat32Array(0, 0.631148, 1)
+colors = PackedColorArray(0.0321603, 0.0062845, 0.056051, 1, 0.0144809, 3.26687e-06, 0.0212623, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_kd13c"]
+gradient = SubResource("Gradient_fu22i")
+
+[sub_resource type="Gradient" id="Gradient_don4t"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_y0ydo"]
+frequency = 0.05
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_0npb4"]
+seamless = true
+color_ramp = SubResource("Gradient_don4t")
+noise = SubResource("FastNoiseLite_y0ydo")
+
+[sub_resource type="Gradient" id="Gradient_2gde2"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_yur27"]
+frequency = 0.05
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_s4i6t"]
+seamless = true
+color_ramp = SubResource("Gradient_2gde2")
+noise = SubResource("FastNoiseLite_yur27")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_avt40"]
+shader = ExtResource("11_epf3o")
+shader_parameter/scroll = Vector2(0.1, 0.1)
+shader_parameter/scroll2 = Vector2(0.2, 0.2)
+shader_parameter/noise = SubResource("NoiseTexture2D_0npb4")
+shader_parameter/noise2 = SubResource("NoiseTexture2D_s4i6t")
+shader_parameter/colorTexture = SubResource("GradientTexture2D_kd13c")
+
+[sub_resource type="Gradient" id="Gradient_2s08p"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_4s4kw"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_48tch"]
+width = 900
+height = 600
+color_ramp = SubResource("Gradient_2s08p")
+noise = SubResource("FastNoiseLite_4s4kw")
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_vhywa")
@@ -82,6 +128,11 @@ offset_top = -300.0
 offset_right = 450.0
 offset_bottom = 300.0
 color = Color(0.207843, 0.207843, 0.207843, 0.278431)
+
+[node name="Sprite2D" type="Sprite2D" parent="Camera2D"]
+material = SubResource("ShaderMaterial_avt40")
+position = Vector2(450, 300)
+texture = SubResource("NoiseTexture2D_48tch")
 
 [node name="Map" type="Node2D" parent="."]
 script = ExtResource("1_n1bfs")
