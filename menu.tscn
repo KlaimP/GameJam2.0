@@ -1,10 +1,13 @@
-[gd_scene load_steps=13 format=3 uid="uid://wwpfy26u6pq4"]
+[gd_scene load_steps=17 format=3 uid="uid://bvdnoqkwqs1j"]
 
 [ext_resource type="Script" path="res://scripts/Menu.gd" id="1_hg8uj"]
 [ext_resource type="Texture2D" uid="uid://dumumurpe3o78" path="res://assets/logo.png" id="1_xt1l2"]
-[ext_resource type="Texture2D" uid="uid://cb28n1mhfva4o" path="res://assets/miniCat.png" id="2_8cj5h"]
 [ext_resource type="FontFile" uid="uid://bquer5nna1u0l" path="res://font/ComicoroRu_0.ttf" id="2_jxc3k"]
 [ext_resource type="Texture2D" uid="uid://bgcv6d5x3c5l6" path="res://assets/menu.png" id="2_udulq"]
+[ext_resource type="Texture2D" uid="uid://b0khx83xv7jxt" path="res://assets/miniCat_1.png" id="5_2agu8"]
+[ext_resource type="Texture2D" uid="uid://0qr7vmv2261v" path="res://assets/miniCat_2.png" id="6_3t2kg"]
+[ext_resource type="Texture2D" uid="uid://ivjptpoia8wn" path="res://assets/miniCat_3.png" id="7_nrss1"]
+[ext_resource type="Texture2D" uid="uid://b6gj6bd61ccv2" path="res://assets/miniCat_4.png" id="8_l1f17"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8etti"]
 
@@ -25,6 +28,26 @@ border_color = Color(0.0980392, 0.0980392, 0.109804, 1)
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qinoe"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mcgw2"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rp77a"]
+animations = [{
+"frames": [{
+"duration": 1.2,
+"texture": ExtResource("5_2agu8")
+}, {
+"duration": 1.2,
+"texture": ExtResource("6_3t2kg")
+}, {
+"duration": 1.2,
+"texture": ExtResource("7_nrss1")
+}, {
+"duration": 1.2,
+"texture": ExtResource("8_l1f17")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -79,12 +102,13 @@ position = Vector2(340, 197)
 scale = Vector2(10, 10)
 texture = ExtResource("1_xt1l2")
 
-[node name="MiniCat" type="Sprite2D" parent="."]
-visible = false
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-position = Vector2(509, 146)
-scale = Vector2(10, 10)
-texture = ExtResource("2_8cj5h")
+position = Vector2(372, 101)
+scale = Vector2(8, 8)
+sprite_frames = SubResource("SpriteFrames_rp77a")
+autoplay = "default"
+frame_progress = 0.741942
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Exit" to="." method="_on_exit_pressed"]
