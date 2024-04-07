@@ -7,7 +7,6 @@ var price := 2
 
 func _ready():
 	EventBus.castle = self
-	EventBus.end_turn.connect(func():EventBus.start_turn.emit())
 
 func add_materials(materials):
 	curMaterials += materials

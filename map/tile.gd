@@ -3,9 +3,10 @@ extends Area2D
 @onready var buildScene: PackedScene = load("res://components/Build.tscn")
 @onready var lineToTile: Line2D = $LineToTile
 
-var lightPower: int = 1
+var lightPower: float = 0
 var building: Build
 var dark
+var futureDark
 var tilePosition: Vector3
 
 var connectedTiles: Array
@@ -47,6 +48,6 @@ func set_build(type: int):
 	add_child(newBuild)
 	building = newBuild
 	newBuild.position = Vector2.ZERO
-	EventBus.end_turn.emit()
 	newBuild.set_build(type)
+	EventBus.end_turn.emit()
 	
