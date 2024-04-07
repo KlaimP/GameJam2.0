@@ -39,10 +39,10 @@ func infect():
 	playedTurns += 1
 	darkPower = int(playedTurns/10 + 1) * darkPowerChange
 	for tile in infectedTiles:
-		if tile.lightPower > 0:
+		if tile.lightPower >= calculate_dark(tile):
 			destroy_infection(tile)
 	for tile in futureInfectedTiles:
-		if tile.lightPower > 0:
+		if tile.lightPower >= calculate_dark(tile):
 			destroy_infection(tile)
 	for tile in futureInfectedTiles:
 		if tile.lightPower < calculate_dark(tile):

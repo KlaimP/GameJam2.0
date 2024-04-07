@@ -1,7 +1,7 @@
 extends Node2D
 
-var curMaterials := 10
-var maxEnergy := 5
+var curMaterials := 5
+var maxEnergy := 3
 var consumedEnergy := 0
 var playedTurns = 0
 
@@ -9,7 +9,7 @@ var turnsToWin = 100
 
 var energyConsumers: Array
 
-var lightPower = 2
+var lightPower = 1
 var tile
 
 func _ready():
@@ -55,7 +55,9 @@ func add_consumer(node):
 func take_energy():
 	consumedEnergy = 0
 	for consumer in energyConsumers:
-		if consumedEnergy + consumer.neededEnergy > maxEnergy: continue
+		if consumedEnergy + consumer.neededEnergy > maxEnergy:
+			EventBus.show_info.emit("Not enough energy")
+			continue
 		consumedEnergy += consumer.neededEnergy
 		consumer.work()
 

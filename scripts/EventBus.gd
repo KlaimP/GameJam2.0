@@ -3,6 +3,7 @@ extends Node
 var castle
 var dark
 
+signal show_info(info)
 signal win
 signal take_castle(node)
 signal set_light

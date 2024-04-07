@@ -20,6 +20,7 @@ var zoomDefault: float = 1.5
 @onready var labelEnegrgy: Label = $UI/Energy
 @onready var labelMaterial: Label = $UI/Materials
 @onready var labelTurn: Label = $UI/TurnLabel
+@onready var labelInfo: Label = $UI/InfoLabel
 @onready var buildMenu = $"../BuildMenu"
 @onready var pauseMenu = $UI/PauseMenu
 @onready var background = $UI/Background
@@ -27,6 +28,7 @@ var buttonSkipTurnPos: Vector2 = Vector2(190, 215)
 var labelEnegrgyPos: Vector2 = Vector2(0, -300)
 var labelMaterialPos: Vector2 = Vector2(220, -300)
 var labelTurnPos: Vector2 = Vector2(-440, -300)
+var labelInfoPos: Vector2 = Vector2(-200, 250)
 
 
 
@@ -49,6 +51,8 @@ func set_ui():
 	labelTurn.position = labelTurnPos * backZoom
 	pauseMenu.scale = backZoom
 	background.scale = backZoom
+	labelInfo.scale = backZoom
+	labelInfo.position = labelInfoPos * backZoom
 
 func set_edges(arr: Array):
 	var posVec = arr[0]
@@ -70,7 +74,8 @@ func set_zoom_settings():
 	var sumY = abs(edgeUp) + abs(edgeDown)
 	var maxVal = sumX if sumX > sumY else sumY
 	zoomMax = screenResolution.x / maxVal
-	zoomDefault = zoomMax
+	zoomDefault = zoomMin
+	position = Vector2.ZERO
 	zoom = Vector2(zoomDefault, zoomDefault)
 	check_position()
 

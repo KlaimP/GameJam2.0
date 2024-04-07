@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://7xskhioo43bm"]
+[gd_scene load_steps=6 format=3 uid="uid://7xskhioo43bm"]
 
 [ext_resource type="Script" path="res://components/Light.gd" id="1_5g1hr"]
 [ext_resource type="Texture2D" uid="uid://co53m5p2v24tj" path="res://assets/lamp.png" id="2_sqrrm"]
@@ -8,10 +8,6 @@
 bg_color = Color(0.133333, 0.133333, 0.133333, 0.862745)
 border_color = Color(0.27451, 0.27451, 0.27451, 0)
 corner_detail = 1
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_u1q7x"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ef7qm"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mjauy"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -34,7 +30,7 @@ scale = Vector2(2, 2)
 texture = ExtResource("2_sqrrm")
 
 [node name="LevelLabel" type="Label" parent="."]
-modulate = Color(0.784314, 0, 0.12549, 1)
+visible = false
 offset_left = -3.0
 offset_top = -42.0
 offset_right = 37.0
@@ -46,6 +42,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Button" type="Button" parent="."]
+visible = false
 z_index = 4
 texture_filter = 1
 offset_left = -40.0
@@ -56,8 +53,8 @@ mouse_filter = 1
 theme_override_fonts/font = ExtResource("3_kj12s")
 theme_override_font_sizes/font_size = 32
 theme_override_styles/normal = SubResource("StyleBoxFlat_cpsiw")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_u1q7x")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_ef7qm")
+theme_override_styles/hover = SubResource("StyleBoxFlat_cpsiw")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_cpsiw")
 theme_override_styles/focus = SubResource("StyleBoxFlat_mjauy")
 text = "Upgrade"
 
