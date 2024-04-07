@@ -42,16 +42,27 @@ func set_light(value):
 func change_light(value):
 	lightPower += value
 	lightPower = -1 if lightPower < -1 else lightPower
+	check_dark()
 	change_color()
+
+
+func check_dark():
+	if dark != null:
+		if darkNode.calculate_dark(self) <= lightPower:
+			darkNode.destroy_infection(self)
+	if futureDark != null:
+		if darkNode.calculate_dark(self) <= lightPower:
+			darkNode.destroy_infection(self)
+				
 
 
 func change_color():
 	match lightPower:
-		-1: $Sprite2D.modulate = Color(0.1,0.1,0.1,1.0)
-		0: $Sprite2D.modulate = Color(0.3, 0.3, 0.3, 1.0)
-		1: $Sprite2D.modulate = Color(0.6, 0.6, 0.6, 1.0)
-		2: $Sprite2D.modulate = Color(0.8, 0.8, 0.8, 1.0)
-		3: $Sprite2D.modulate = Color(1.0, 1.0, 1.0, 1.0)
+		-1: $Sprite2D.modulate = Color(0.1, 0.1, 0.1, 1.0); return
+		0: $Sprite2D.modulate = Color(0.3, 0.3, 0.3, 1.0); return
+		1: $Sprite2D.modulate = Color(0.6, 0.6, 0.6, 1.0); return
+		2: $Sprite2D.modulate = Color(0.8, 0.8, 0.8, 1.0); return
+	$Sprite2D.modulate = Color(1.0, 1.0, 1.0, 1.0)
 
 
 func draw_line_to_tile():
