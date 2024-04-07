@@ -28,10 +28,14 @@ func set_light(value):
 	change_color()
 
 func change_light(value):
+	#check_dark()
 	lightPower += value
 	lightPower = -1 if lightPower < -1 else 3 if lightPower > 3 else lightPower
 	change_color()
-	
+
+func check_dark():
+	if dark.calculate_dark(self) < lightPower:
+		dark.destroy_infection(self)
 
 func change_color():
 	match lightPower:
