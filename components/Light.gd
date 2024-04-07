@@ -39,6 +39,7 @@ func upgrade():
 		lightPower += 1
 		$LevelLabel.text = str(level + 1)
 		EventBus.end_turn.emit()
+		light_around()
 
 
 func work():
