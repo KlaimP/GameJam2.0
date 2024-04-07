@@ -5,6 +5,10 @@ var choosedTile
 var price = [5,7,10]
 var castle
 
+func _input(event):
+	if event.is_action_pressed("esc"):
+		hide()
+
 func _ready():
 	EventBus.end_turn.connect(func(): hide())
 	EventBus.open_buid_menu.connect(open_build_menu)

@@ -133,6 +133,7 @@ texture = SubResource("NoiseTexture2D_48tch")
 
 [node name="PauseMenu" type="Node2D" parent="Camera2D/UI"]
 visible = false
+z_index = 10
 script = ExtResource("9_at8kd")
 
 [node name="PauseMenu" type="ColorRect" parent="Camera2D/UI/PauseMenu"]

@@ -84,6 +84,8 @@ func _on_input_event(_viewport, event: InputEvent, _shape_idx):
 			return
 		if lightPower > 0:
 			EventBus.open_buid_menu.emit(self)
+		else:
+			EventBus.show_info.emit("Too dark to build")
 
 
 func set_build(type: int):
