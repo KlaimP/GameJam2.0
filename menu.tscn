@@ -50,3 +50,4 @@ scale = Vector2(10, 10)
 texture = ExtResource("2_8cj5h")
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Exit" to="." method="_on_exit_pressed"]
