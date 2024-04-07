@@ -20,14 +20,8 @@ func light_around():
 	for neigh in tile.connectedTiles:
 		neigh.change_light(lightPower)
 
-func dark_around():
-	tile.change_light(-lightPower)
-	for neigh in tile.connectedTiles:
-		neigh.change_light(-lightPower)
-
 
 func destroy():
-	dark_around()
 	print("destroy")
 
 

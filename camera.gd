@@ -21,10 +21,10 @@ var zoomDefault: float = 1.5
 @onready var labelMaterial: Label = $UI/Materials
 @onready var labelTurn: Label = $UI/TurnLabel
 @onready var buildMenu = $"../BuildMenu"
-var buttonSkipTurnPos: Vector2 = Vector2(340, 315)
-var labelEnegrgyPos: Vector2 = Vector2(220, -400)
-var labelMaterialPos: Vector2 = Vector2(420, -400)
-var labelTurnPos: Vector2 = Vector2(-580, -400)
+var buttonSkipTurnPos: Vector2 = Vector2(190, 215)
+var labelEnegrgyPos: Vector2 = Vector2(0, -300)
+var labelMaterialPos: Vector2 = Vector2(220, -300)
+var labelTurnPos: Vector2 = Vector2(-440, -300)
 
 
 
