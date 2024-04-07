@@ -1,6 +1,6 @@
 [gd_resource type="VisualShader" load_steps=29 format=3 uid="uid://d4iw8qsrbt0hw"]
 
-[ext_resource type="Texture2D" uid="uid://s7teb0y4ihlp" path="res://GasPlanetNoise.tres" id="1_d7msb"]
+[ext_resource type="Texture2D" uid="uid://s7teb0y4ihlp" path="res://trash/GasPlanetNoise.tres" id="1_d7msb"]
 
 [sub_resource type="VisualShaderNodeVectorCompose" id="VisualShaderNodeVectorCompose_aoi6b"]
 op_type = 0
@@ -229,7 +229,6 @@ void fragment() {
 
 }
 "
-graph_offset = Vector2(-659.323, -107.678)
 nodes/fragment/0/position = Vector2(314.904, 94.1061)
 nodes/fragment/2/node = SubResource("VisualShaderNodeTexture_iqanv")
 nodes/fragment/2/position = Vector2(-889.533, -219.471)

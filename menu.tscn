@@ -1,0 +1,52 @@
+[gd_scene load_steps=5 format=3 uid="uid://bvdnoqkwqs1j"]
+
+[ext_resource type="Script" path="res://scripts/Menu.gd" id="1_hg8uj"]
+[ext_resource type="Texture2D" uid="uid://dumumurpe3o78" path="res://assets/logo.png" id="1_xt1l2"]
+[ext_resource type="Texture2D" uid="uid://cb28n1mhfva4o" path="res://assets/miniCat.png" id="2_8cj5h"]
+[ext_resource type="FontFile" uid="uid://bquer5nna1u0l" path="res://font/ComicoroRu_0.ttf" id="2_jxc3k"]
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_hg8uj")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_left = 45.0
+offset_top = 450.0
+offset_right = 204.0
+offset_bottom = 530.0
+scale = Vector2(2.495, 2.495)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Play" type="Button" parent="MarginContainer/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_jxc3k")
+theme_override_font_sizes/font_size = 32
+text = "Start"
+
+[node name="Exit" type="Button" parent="MarginContainer/VBoxContainer"]
+texture_filter = 1
+texture_repeat = 1
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_jxc3k")
+theme_override_font_sizes/font_size = 32
+text = "Exit
+"
+
+[node name="Logo" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(340, 197)
+scale = Vector2(10, 10)
+texture = ExtResource("1_xt1l2")
+
+[node name="MiniCat" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(509, 146)
+scale = Vector2(10, 10)
+texture = ExtResource("2_8cj5h")
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
