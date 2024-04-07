@@ -1,7 +1,7 @@
 extends Node2D
 
 
-var materialGeneration := 2
+var materialGeneration := 3
 var neededEnergy := 1
 var castle
 

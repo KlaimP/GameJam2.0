@@ -1,6 +1,6 @@
 extends Node2D
 
-var energyGeneration := 3
+var energyGeneration := 4
 var castle
 
 func _ready():

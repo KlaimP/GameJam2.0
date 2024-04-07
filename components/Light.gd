@@ -8,7 +8,7 @@ var castle
 
 var level = 0
 var levelMax = 2
-var upgradeCost = [3,5]
+var upgradeCost = [8,10]
 
 var lightPower = 1
 
@@ -36,13 +36,15 @@ func upgrade():
 	if castle.take_materials(upgradeCost[level]):
 		level += 1
 		neededEnergy += 1
-		lightPower += 1
+		lightPower += level
 		$LevelLabel.text = str(level + 1)
 		EventBus.end_turn.emit()
 		tile.change_light(0)
 		for neigh in tile.connectedTiles:
 			neigh.change_light(0)
 		if level >= levelMax: $Button.hide()
+	else:
+		EventBus.show_info.emit("Not enough material")
 
 
 func work():

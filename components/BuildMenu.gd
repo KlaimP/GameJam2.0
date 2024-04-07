@@ -2,7 +2,7 @@ extends Node2D
 
 
 var choosedTile
-var price = [2,2,3]
+var price = [5,7,12]
 var castle
 
 func _ready():
