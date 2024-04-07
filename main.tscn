@@ -198,6 +198,7 @@ offset_left = -45.0
 offset_top = -100.0
 offset_right = 40.0
 offset_bottom = 100.0
+mouse_filter = 2
 color = Color(0.12549, 0.12549, 0.12549, 0.537255)
 
 [node name="Label" type="Label" parent="Camera2D/UI/HelpText"]
