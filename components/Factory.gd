@@ -7,9 +7,13 @@ var castle
 
 func _ready():
 	castle = EventBus.castle
-	EventBus.start_turn.connect(turn)
+	EventBus.end_turn.connect(turn)
 	work=working()
-	
+
+func destroy():
+	castle.return_energy(energyConsum)
+	queue_free()
+
 func turn():
 	castle.add_materials(materialGeneration)
 	if !work:

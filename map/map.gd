@@ -2,25 +2,26 @@ extends Node2D
 
 
 var TILE_SIZE = 32
-var TILE_SPACING = 15
+var TILE_SPACING = 5
 var TILE_X_OFFSET: float = TILE_SIZE*2
 var TILE_Y_OFFSET: float = 52
 var TILE_XY_OFFSET: float = TILE_SIZE
 
 var sizeField = 9
 
-var chanceGenerate = 0.8
-var chanceSkip = 0.4
+var chanceGenerate = 0.6
+var chanceSkip = 0.5
+var chanceGenerateStep = 0.0
 
 # Map Size: [Min  Diameter, Max Diameter, Min Number of Tiles, Max Number of Tiles]
 var genSizeSettings: Dictionary = {
 	0: [1, 4, 32, 40],
 	1: [2, 6, 45, 80],
-	2: [4, 10, 90, 120],
-	3: [7, 15, 200, 350]
+	2: [3, 10, 90, 120],
+	3: [4, 15, 200, 350]
 }
 var numberGenerated: int = 0
-var choosedSize: int = 1
+var choosedSize: int = 3
 
 
 @onready var tileScene: PackedScene = load("res://map/tile.tscn")
@@ -32,11 +33,16 @@ var tiles: Dictionary
 
 func _ready():
 	random_generator()
+	set_z_index_in_tiles()
 	connect_neighbors()
 	tiles[Vector3(0,0,0)].set_build(0)
 	EventBus.calculate_edges.emit(find_edges())
 
 
+
+func set_z_index_in_tiles():
+	for tile in tiles.values():
+		tile.z_index = tile.tilePosition.y - tile.tilePosition.z
 
 func random_generator():
 	create_tiles_around(set_tile(Vector3.ZERO))
@@ -74,7 +80,9 @@ func find_low_neighbor_tile():
 
 func create_tiles_around(tile):
 	if numberGenerated > genSizeSettings[choosedSize][3]: return
+	var n = 0
 	for neigTile in generate_neighbor_positions(tile.tilePosition):
+		n += 1
 		if genSizeSettings[choosedSize][1] <= find_max_coord(neigTile):
 			continue
 		if find_max_coord(neigTile) <= genSizeSettings[choosedSize][0]:
@@ -83,7 +91,7 @@ func create_tiles_around(tile):
 			create_tiles_around(set_tile(neigTile))
 			continue
 		if randf() < chanceGenerate:
-			if randf() > chanceSkip: continue
+			if randf() > (chanceSkip + chanceGenerateStep * n * randi_range(0,2)): continue
 			if tiles.has(neigTile):
 				continue
 			create_tiles_around(set_tile(neigTile))
@@ -109,7 +117,7 @@ func find_edges() -> Array:
 func connect_neighbors():
 	for tile in tiles.values():
 		tile.connectedTiles = find_neighbors(tile.tilePosition)
-		tile.draw_line_to_tile()
+		#tile.draw_line_to_tile()
 
 
 func generate_neighbor_positions(pos: Vector3) -> Array:

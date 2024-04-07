@@ -8,6 +8,10 @@ func _ready():
 	castle = EventBus.castle
 	working()
 
+func destroy():
+	destroyed()
+	queue_free()
+
 func working():
 	castle.add_energy(energyGeneration)
 

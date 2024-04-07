@@ -3,8 +3,7 @@ extends Label
 var castle
 
 func _ready():
-	castle = EventBus.castle
-	
+	EventBus.change_materials_label.connect(change_materials)
 
-func _process(delta):
-	text =  str(castle.curMaterials) +" materials"
+func change_materials(materials):
+	text =  str(materials) + " materials"

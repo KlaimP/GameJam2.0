@@ -5,20 +5,37 @@ enum Type {CASTLE, FACTORY, LUMINAIRE, GENERATOR}
 
 @export var type : Type
 
+var build
+
 @onready var castle: PackedScene = load("res://components/Castle.tscn")
 @onready var factory: PackedScene = load("res://components/Factory.tscn")
 @onready var light: PackedScene = load("res://components/Light.tscn")
 @onready var generator: PackedScene = load("res://components/LightGenerator.tscn")
 
+func destroy():
+	build.destroy()
+	queue_free()
+
 func set_build(value):
 	type = value
 	match value:
 		Type.CASTLE:
-			add_child(castle.instantiate())
-			EventBus.start_turn.emit()
+			var newBuild = castle.instantiate()
+			build = newBuild
+			add_child(newBuild)
+			newBuild.tile = get_parent()
+			newBuild.light_around(1)
 		Type.FACTORY:
-			add_child(factory.instantiate())
+			var newBuild = factory.instantiate()
+			build = newBuild
+			add_child(newBuild)
 		Type.LUMINAIRE:
-			add_child(light.instantiate())
+			var newBuild = light.instantiate()
+			build = newBuild
+			add_child(newBuild)
+			newBuild.tile = get_parent()
+			newBuild.light_around(1)
 		Type.GENERATOR:
-			add_child(generator.instantiate())
+			var newBuild = generator.instantiate()
+			build = newBuild
+			add_child(newBuild)
