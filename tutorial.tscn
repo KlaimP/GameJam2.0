@@ -1,8 +1,16 @@
-[gd_scene load_steps=8 format=3 uid="uid://h7iex0kjqr0c"]
+[gd_scene load_steps=12 format=3 uid="uid://h7iex0kjqr0c"]
 
 [ext_resource type="Script" path="res://Tutorial.gd" id="1_fsv8i"]
 [ext_resource type="FontFile" uid="uid://bquer5nna1u0l" path="res://font/ComicoroRu_0.ttf" id="2_l6ncg"]
 [ext_resource type="Shader" path="res://shaders/back.gdshader" id="3_0poyx"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ppytu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mgg4s"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2tphf"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0fri3"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kay7k"]
 shader = ExtResource("3_0poyx")
@@ -43,6 +51,10 @@ offset_bottom = 552.0
 scale = Vector2(2, 2)
 theme_override_fonts/font = ExtResource("2_l6ncg")
 theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ppytu")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_mgg4s")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_2tphf")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_0fri3")
 text = "Back"
 
 [node name="LableCastle" type="Label" parent="."]
