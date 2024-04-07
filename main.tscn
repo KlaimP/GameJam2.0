@@ -31,15 +31,15 @@ shader_parameter/movement = 1.0
 shader_parameter/blur = 0.0
 shader_parameter/blur2 = 0.01
 
-[sub_resource type="Gradient" id="Gradient_2s08p"]
+[sub_resource type="Gradient" id="Gradient_akd8f"]
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_4s4kw"]
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_5a13s"]
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_48tch"]
 width = 900
 height = 600
-color_ramp = SubResource("Gradient_2s08p")
-noise = SubResource("FastNoiseLite_4s4kw")
+color_ramp = SubResource("Gradient_akd8f")
+noise = SubResource("FastNoiseLite_5a13s")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wmx66"]
 bg_color = Color(0.133333, 0.133333, 0.133333, 0.862745)
@@ -189,6 +189,35 @@ text = "Info"
 horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("10_flnke")
+
+[node name="HelpText" type="Node2D" parent="Camera2D/UI"]
+
+[node name="ColorRect" type="ColorRect" parent="Camera2D/UI/HelpText"]
+offset_left = -45.0
+offset_top = -100.0
+offset_right = 40.0
+offset_bottom = 100.0
+color = Color(0.12549, 0.12549, 0.12549, 0.537255)
+
+[node name="Label" type="Label" parent="Camera2D/UI/HelpText"]
+offset_left = -40.0
+offset_top = -100.0
+offset_right = 40.0
+offset_bottom = 100.0
+theme_override_fonts/font = ExtResource("2_gsyf2")
+theme_override_font_sizes/font_size = 16
+text = "Factory:
+	cost - 5
+	energy - 1
+	produce - 3
+Light:
+	cost - 7, 8, 10
+	energy - 1, 2, 3
+	light - 1, 2, 4
+Generator:
+	cost - 10
+	produce - 4"
+vertical_alignment = 1
 
 [node name="Map" type="Node2D" parent="."]
 script = ExtResource("1_n1bfs")

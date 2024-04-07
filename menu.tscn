@@ -82,6 +82,17 @@ theme_override_styles/pressed = SubResource("StyleBoxEmpty_hex3n")
 theme_override_styles/focus = SubResource("StyleBoxFlat_tkutd")
 text = "Start"
 
+[node name="Tutorial" type="Button" parent="MarginContainer/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_jxc3k")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxEmpty_8etti")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_4amee")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_hex3n")
+theme_override_styles/focus = SubResource("StyleBoxFlat_tkutd")
+text = "Tutorial"
+
 [node name="Exit" type="Button" parent="MarginContainer/VBoxContainer"]
 texture_filter = 1
 texture_repeat = 1
@@ -111,4 +122,5 @@ autoplay = "default"
 frame_progress = 0.741942
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Tutorial" to="." method="_on_tutorial_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Exit" to="." method="_on_exit_pressed"]

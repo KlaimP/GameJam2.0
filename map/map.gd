@@ -15,7 +15,7 @@ var chanceGenerateStep = 0.0
 
 # Map Size: [Min  Diameter, Max Diameter, Min Number of Tiles, Max Number of Tiles]
 var genSizeSettings: Dictionary = {
-	0: [1, 8, 25, 90],
+	0: [1, 8, 32, 50],
 	1: [2, 6, 45, 80],
 	2: [3, 10, 90, 120],
 	3: [4, 15, 200, 350]
