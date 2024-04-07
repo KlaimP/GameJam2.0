@@ -41,10 +41,11 @@ script = ExtResource("2_mnvyg")
 
 [node name="SkipTurnButton" type="Button" parent="Camera2D/UI"]
 layout_mode = 0
-offset_left = 629.0
-offset_top = 387.0
-offset_right = 710.0
-offset_bottom = 418.0
+offset_left = 140.0
+offset_top = 315.0
+offset_right = 390.0
+offset_bottom = 390.0
+theme_override_font_sizes/font_size = 48
 text = "Skip Turn"
 script = ExtResource("4_qmleu")
 
