@@ -1,26 +1,38 @@
 extends Camera2D
 
 
-var zoom_step: float = 0.75
-var zoom_max: float = 2.0
-var zoom_min: float = 0.5
+var zoomStep: float = 0.75
+var zoomMax: float = 2.0
+var zoomMin: float = 0.5
 
-var edge_left: float = -1000
-var edge_right: float = 1000
-var edge_up: float = -1000
-var edge_down: float = 1000
+var edgeLeft: float = -1000
+var edgeRight: float = 1000
+var edgeUp: float = -1000
+var edgeDown: float = 1000
+var edgeOffset: float = 50
 
-var zoom_default: float = 1.0
+var screenResolution: Vector2
+var screenCenter: Vector2
+
+var zoomDefault: float = 1.0
 
 
 
 
 
-func _ready() -> void:
-	zoom = Vector2(zoom_default, zoom_default)
+func _ready() -> void: 
+	screenResolution = get_canvas_transform().get_origin() * 2
+	zoom = Vector2(zoomDefault, zoomDefault)
+	EventBus.calculate_edges.connect(set_edges)
 	check_position()
 
-
+func set_edges(arr: Array):
+	var posVec = arr[0]
+	var negVec = arr[1]
+	edgeLeft = negVec.x - edgeOffset
+	edgeRight = posVec.x + edgeOffset
+	edgeUp = negVec.y - edgeOffset
+	edgeDown = posVec.y + edgeOffset
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -30,7 +42,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action("cam_zoom_out"):
 		zoom_camera(1)
 		check_position()
-	if Input.is_action_pressed("lmb"):
+	if Input.is_action_pressed("rmb"):
 		if event is InputEventMouseMotion:
 			move_camera_pan(event.relative)
 			check_position()
@@ -45,19 +57,19 @@ func check_position():
 	var offset_y = viewport_size.y / (zoom.y * 2)
 	var pos = position
 	
-	if pos.x + offset_x > edge_right:
-		position.x -= pos.x + offset_x - edge_right
-	elif pos.x - offset_x < edge_left:
-		position.x -= pos.x - offset_x - edge_left
-	if pos.y + offset_y > edge_down:
-		position.y -= pos.y + offset_y - edge_down
-	elif pos.y - offset_y < edge_up:
-		position.y -= pos.y - offset_y - edge_up
+	if pos.x + offset_x > edgeRight:
+		position.x -= pos.x + offset_x - edgeRight
+	elif pos.x - offset_x < edgeLeft:
+		position.x -= pos.x - offset_x - edgeLeft
+	if pos.y + offset_y > edgeDown:
+		position.y -= pos.y + offset_y - edgeDown
+	elif pos.y - offset_y < edgeUp:
+		position.y -= pos.y - offset_y - edgeUp
 	
-	if pos.x + offset_x > edge_right and pos.x - offset_x < edge_left:
-		position.x = (edge_left + edge_right)/2
-	if pos.y + offset_y > edge_down and pos.y - offset_y < edge_up:
-		position.y = (edge_up + edge_down)/2
+	if pos.x + offset_x > edgeRight and pos.x - offset_x < edgeLeft:
+		position.x = (edgeLeft + edgeRight)/2
+	if pos.y + offset_y > edgeDown and pos.y - offset_y < edgeUp:
+		position.y = (edgeUp + edgeDown)/2
 	
 
 
@@ -67,16 +79,16 @@ func check_position():
 func zoom_camera(zooming: int):
 	var mouse_pos = get_global_mouse_position()
 	
-	zoom *= pow(zoom_step, zooming)
+	zoom *= pow(zoomStep, zooming)
 	
-	if zoom > Vector2(zoom_max, zoom_max):
-		zoom = Vector2(zoom_max, zoom_max)
+	if zoom > Vector2(zoomMax, zoomMax):
+		zoom = Vector2(zoomMax, zoomMax)
 		return
-	if zoom < Vector2(zoom_min, zoom_min):
-		zoom = Vector2(zoom_min, zoom_min)
+	if zoom < Vector2(zoomMin, zoomMin):
+		zoom = Vector2(zoomMin, zoomMin)
 		return
 	
-	position = lerp(position, mouse_pos, (zoom_step-1) * zooming)
+	position = lerp(position, mouse_pos, (zoomStep-1) * zooming)
 
 
 

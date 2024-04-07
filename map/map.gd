@@ -30,6 +30,7 @@ func _ready():
 	random_generator()
 	connect_neighbors()
 	tiles[Vector3(0,0,0)].set_build(0)
+	EventBus.calculate_edges.emit(find_edges())
 
 
 
@@ -88,6 +89,18 @@ func find_max_coord(vec: Vector3):
 
 func find_min_coord(vec: Vector3):
 	return vec.x if vec.x < vec.y and vec.x < vec.z else vec.y if vec.y < vec.z else vec.z
+
+func find_edges() -> Array:
+	var posX = 0
+	var negX = 0
+	var posY = 0
+	var negY = 0
+	for tile in tiles.values():
+		if tile.position.x > posX: posX = tile.position.x
+		if tile.position.y > posY: posY = tile.position.y
+		if tile.position.x < negX: negX = tile.position.x
+		if tile.position.y < negY: negY = tile.position.y
+	return [Vector2(posX, posY), Vector2(negX, negY)]
 
 func connect_neighbors():
 	for tile in tiles.values():

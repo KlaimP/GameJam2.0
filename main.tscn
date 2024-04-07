@@ -9,13 +9,11 @@
 
 [node name="Main" type="Node2D"]
 
-[node name="Map" type="Node2D" parent="."]
-script = ExtResource("1_n1bfs")
-
 [node name="Camera2D" type="Camera2D" parent="."]
 script = ExtResource("2_2xbfh")
 
-[node name="Control" type="Control" parent="Camera2D"]
+[node name="UI" type="Control" parent="Camera2D"]
+z_index = 2
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -23,7 +21,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="Camera2D/Control"]
+[node name="Label" type="Label" parent="Camera2D/UI"]
 layout_mode = 0
 offset_left = 472.0
 offset_top = -319.0
@@ -32,7 +30,7 @@ offset_bottom = -296.0
 text = "Energy: 0"
 script = ExtResource("2_mnvyg")
 
-[node name="Label2" type="Label" parent="Camera2D/Control"]
+[node name="Label2" type="Label" parent="Camera2D/UI"]
 layout_mode = 0
 offset_left = 474.0
 offset_top = -285.0
@@ -41,7 +39,7 @@ offset_bottom = -262.0
 text = "Energy: 0"
 script = ExtResource("2_mnvyg")
 
-[node name="SkipTurnButton" type="Button" parent="Camera2D/Control"]
+[node name="SkipTurnButton" type="Button" parent="Camera2D/UI"]
 layout_mode = 0
 offset_left = 629.0
 offset_top = 387.0
@@ -50,10 +48,13 @@ offset_bottom = 418.0
 text = "Skip Turn"
 script = ExtResource("4_qmleu")
 
+[node name="Map" type="Node2D" parent="."]
+script = ExtResource("1_n1bfs")
+
 [node name="BuildMenu" parent="." instance=ExtResource("2_x1yqp")]
 visible = false
 
 [node name="Dark" type="Node2D" parent="."]
 script = ExtResource("3_jrs5i")
 
-[connection signal="pressed" from="Camera2D/Control/SkipTurnButton" to="Camera2D/Control/SkipTurnButton" method="_on_pressed"]
+[connection signal="pressed" from="Camera2D/UI/SkipTurnButton" to="Camera2D/UI/SkipTurnButton" method="_on_pressed"]
