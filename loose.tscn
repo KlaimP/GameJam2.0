@@ -1,0 +1,45 @@
+[gd_scene load_steps=3 format=3 uid="uid://hg0ah266rigy"]
+
+[ext_resource type="Script" path="res://Loose.gd" id="1_o6mr3"]
+[ext_resource type="FontFile" uid="uid://bquer5nna1u0l" path="res://font/ComicoroRu_0.ttf" id="2_6l0ys"]
+
+[node name="Loose" type="Node2D"]
+script = ExtResource("1_o6mr3")
+
+[node name="RestartButton" type="Button" parent="."]
+texture_filter = 1
+offset_left = 400.0
+offset_top = 359.0
+offset_right = 591.0
+offset_bottom = 405.0
+scale = Vector2(2, 2)
+theme_override_fonts/font = ExtResource("2_6l0ys")
+theme_override_font_sizes/font_size = 32
+text = "Restart"
+
+[node name="MainMenuButton" type="Button" parent="."]
+texture_filter = 1
+offset_left = 400.0
+offset_top = 470.0
+offset_right = 591.0
+offset_bottom = 516.0
+scale = Vector2(2, 2)
+theme_override_fonts/font = ExtResource("2_6l0ys")
+theme_override_font_sizes/font_size = 32
+text = "Main menu"
+
+[node name="Label" type="Label" parent="."]
+texture_filter = 1
+offset_left = 357.0
+offset_top = 190.0
+offset_right = 515.0
+offset_bottom = 250.0
+scale = Vector2(3, 3)
+theme_override_fonts/font = ExtResource("2_6l0ys")
+theme_override_font_sizes/font_size = 32
+text = "You Loose"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="RestartButton" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="MainMenuButton" to="." method="_on_main_menu_button_pressed"]
