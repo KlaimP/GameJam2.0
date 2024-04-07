@@ -1,9 +1,46 @@
-[gd_scene load_steps=3 format=3 uid="uid://c64esolnv3qio"]
+[gd_scene load_steps=12 format=3 uid="uid://h7iex0kjqr0c"]
 
 [ext_resource type="Script" path="res://Tutorial.gd" id="1_fsv8i"]
 [ext_resource type="FontFile" uid="uid://bquer5nna1u0l" path="res://font/ComicoroRu_0.ttf" id="2_l6ncg"]
+[ext_resource type="Shader" path="res://shaders/back.gdshader" id="3_0poyx"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ppytu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mgg4s"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2tphf"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0fri3"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kay7k"]
+shader = ExtResource("3_0poyx")
+shader_parameter/stars_on = true
+shader_parameter/timeScaleFactor = 0.04
+shader_parameter/colour_muiltiplier = Color(1, 1, 1, 1)
+shader_parameter/colour_muiltiplier2 = Color(1, 1, 1, 1)
+shader_parameter/brightness = 1.0
+shader_parameter/clouds_resolution = 3.0
+shader_parameter/clouds_intesity = 0.0
+shader_parameter/waveyness = 0.5
+shader_parameter/fragmentation = 7.0
+shader_parameter/distortion = 0.5
+shader_parameter/clouds_alpha = 0.5
+shader_parameter/movement = 1.0
+shader_parameter/blur = 0.0
+shader_parameter/blur2 = 0.01
+
+[sub_resource type="Gradient" id="Gradient_2s08p"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_4s4kw"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_3dy26"]
+width = 900
+height = 600
+color_ramp = SubResource("Gradient_2s08p")
+noise = SubResource("FastNoiseLite_4s4kw")
 
 [node name="Tutorial" type="Node2D"]
+texture_filter = 1
 script = ExtResource("1_fsv8i")
 
 [node name="Back" type="Button" parent="."]
@@ -14,6 +51,10 @@ offset_bottom = 552.0
 scale = Vector2(2, 2)
 theme_override_fonts/font = ExtResource("2_l6ncg")
 theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ppytu")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_mgg4s")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_2tphf")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_0fri3")
 text = "Back"
 
 [node name="LableCastle" type="Label" parent="."]
@@ -85,5 +126,11 @@ text = "Главная задача игрока - выжить на протя�
 или изгнать тьму"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Background" type="Sprite2D" parent="."]
+z_index = -200
+material = SubResource("ShaderMaterial_kay7k")
+position = Vector2(450, 300)
+texture = SubResource("NoiseTexture2D_3dy26")
 
 [connection signal="pressed" from="Back" to="." method="_on_back_pressed"]

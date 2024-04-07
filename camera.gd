@@ -24,11 +24,13 @@ var zoomDefault: float = 1.5
 @onready var buildMenu = $"../BuildMenu"
 @onready var pauseMenu = $UI/PauseMenu
 @onready var background = $UI/Background
+@onready var textInfo = $UI/HelpText
 var buttonSkipTurnPos: Vector2 = Vector2(190, 215)
 var labelEnegrgyPos: Vector2 = Vector2(0, -300)
 var labelMaterialPos: Vector2 = Vector2(220, -300)
 var labelTurnPos: Vector2 = Vector2(-440, -300)
 var labelInfoPos: Vector2 = Vector2(-200, 250)
+var textInfoPos: Vector2 = Vector2(370, -20)
 
 
 
@@ -53,6 +55,8 @@ func set_ui():
 	background.scale = backZoom
 	labelInfo.scale = backZoom
 	labelInfo.position = labelInfoPos * backZoom
+	textInfo.scale = backZoom * 2
+	textInfo.position = textInfoPos * backZoom
 
 func set_edges(arr: Array):
 	var posVec = arr[0]

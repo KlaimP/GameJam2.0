@@ -1,40 +1,54 @@
-[gd_scene load_steps=3 format=3 uid="uid://dfs010vg0lptn"]
+[gd_scene load_steps=8 format=3 uid="uid://xeb3ytc3g3w5"]
 
 [ext_resource type="Script" path="res://WinScene.gd" id="1_nm64a"]
 [ext_resource type="FontFile" uid="uid://bquer5nna1u0l" path="res://font/ComicoroRu_0.ttf" id="2_bk1nf"]
+[ext_resource type="Texture2D" uid="uid://bcr3o346myoef" path="res://assets/winMenu.png" id="2_ytmp3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_doldb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2p2ai"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yes8d"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ss3iv"]
 
 [node name="WinScene" type="Node2D"]
+texture_filter = 1
 script = ExtResource("1_nm64a")
 
+[node name="WinMenu" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(450, 300)
+scale = Vector2(7.5, 7.5)
+texture = ExtResource("2_ytmp3")
+
 [node name="ReturnToMainMenu" type="Button" parent="."]
-offset_left = 295.0
-offset_top = 258.0
-offset_right = 564.0
-offset_bottom = 325.0
-theme_override_fonts/font = ExtResource("2_bk1nf")
-theme_override_font_sizes/font_size = 32
-text = "Return to main menu"
-
-[node name="Restart" type="Button" parent="."]
-offset_left = 295.0
-offset_top = 344.0
-offset_right = 564.0
-offset_bottom = 411.0
-theme_override_fonts/font = ExtResource("2_bk1nf")
-theme_override_font_sizes/font_size = 32
-text = "Restart"
-
-[node name="Label" type="Label" parent="."]
-offset_left = 263.0
-offset_top = 124.0
-offset_right = 433.0
-offset_bottom = 173.0
+offset_left = 50.0
+offset_top = 400.0
+offset_right = 200.0
+offset_bottom = 450.0
 scale = Vector2(2, 2)
 theme_override_fonts/font = ExtResource("2_bk1nf")
 theme_override_font_sizes/font_size = 32
-text = "You've won!"
-horizontal_alignment = 1
-vertical_alignment = 1
+theme_override_styles/normal = SubResource("StyleBoxEmpty_doldb")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_2p2ai")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_yes8d")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ss3iv")
+text = "Main menu"
+
+[node name="Restart" type="Button" parent="."]
+offset_left = 550.0
+offset_top = 400.0
+offset_right = 700.0
+offset_bottom = 450.0
+scale = Vector2(2, 2)
+theme_override_fonts/font = ExtResource("2_bk1nf")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxEmpty_doldb")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_2p2ai")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_yes8d")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ss3iv")
+text = "Restart"
 
 [connection signal="pressed" from="ReturnToMainMenu" to="." method="_on_return_to_main_menu_pressed"]
 [connection signal="pressed" from="Restart" to="." method="_on_return_to_main_menu_2_pressed"]
