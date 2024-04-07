@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cr0o4ep4tal6b"
+path="res://.godot/imported/Y2mate.mx - No Muscle No Problem (128 kbps).mp3-ff8e7de560a6297cb0fc8d51fd1f43b9.mp3str"
+
+[deps]
+
+source_file="res://music/Y2mate.mx - No Muscle No Problem (128 kbps).mp3"
+dest_files=["res://.godot/imported/Y2mate.mx - No Muscle No Problem (128 kbps).mp3-ff8e7de560a6297cb0fc8d51fd1f43b9.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

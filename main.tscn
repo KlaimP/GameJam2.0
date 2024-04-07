@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://bqepsxv2y24uo"]
+[gd_scene load_steps=23 format=3 uid="uid://bqepsxv2y24uo"]
 
 [ext_resource type="Script" path="res://map/map.gd" id="1_n1bfs"]
 [ext_resource type="Script" path="res://main.gd" id="1_vhywa"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" path="res://PauseMenu.gd" id="9_at8kd"]
 [ext_resource type="Script" path="res://InfoLabel.gd" id="10_flnke"]
 [ext_resource type="Shader" path="res://shaders/back.gdshader" id="11_epf3o"]
+[ext_resource type="AudioStream" uid="uid://cr0o4ep4tal6b" path="res://music/Y2mate.mx - No Muscle No Problem (128 kbps).mp3" id="14_5hyqe"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_avt40"]
 shader = ExtResource("11_epf3o")
@@ -228,6 +229,10 @@ script = ExtResource("3_jrs5i")
 [node name="BuildMenu" parent="." instance=ExtResource("2_x1yqp")]
 visible = false
 z_index = 100
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("14_5hyqe")
+autoplay = true
 
 [connection signal="pressed" from="Camera2D/UI/SkipTurnButton" to="Camera2D/UI/SkipTurnButton" method="_on_pressed"]
 [connection signal="pressed" from="Camera2D/UI/PauseMenu/ResumeButton" to="Camera2D/UI/PauseMenu" method="_on_resume_button_pressed"]
