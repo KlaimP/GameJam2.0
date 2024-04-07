@@ -1,7 +1,6 @@
-[gd_scene load_steps=15 format=3 uid="uid://bvve7um2glufk"]
+[gd_scene load_steps=14 format=3 uid="uid://bvve7um2glufk"]
 
 [ext_resource type="Shader" path="res://Dark.gdshader" id="1_nukq5"]
-[ext_resource type="Texture2D" uid="uid://dgeif5pnxpoeg" path="res://assets/tile_2.png" id="2_cgh2s"]
 
 [sub_resource type="Gradient" id="Gradient_itq0j"]
 offsets = PackedFloat32Array(0, 0.163934, 0.295082, 0.45082, 1)
@@ -48,13 +47,8 @@ noise = SubResource("FastNoiseLite_es0vx")
 
 [node name="Dark" type="Node2D"]
 
-[node name="Tile2" type="Sprite2D" parent="."]
-texture_filter = 1
-scale = Vector2(1.38889, 1.27778)
-texture = ExtResource("2_cgh2s")
-
-[node name="Sprite2D" type="Sprite2D" parent="Tile2"]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_6e8r4")
-position = Vector2(18, 5.47826)
-scale = Vector2(0.123945, 0.123945)
+position = Vector2(0, -5.72205e-06)
+scale = Vector2(0.172146, 0.158375)
 texture = SubResource("NoiseTexture2D_y72nn")
