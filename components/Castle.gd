@@ -20,8 +20,14 @@ func light_around():
 	for neigh in tile.connectedTiles:
 		neigh.change_light(lightPower)
 
+func dark_around():
+	tile.change_light(-lightPower)
+	for neigh in tile.connectedTiles:
+		neigh.change_light(-lightPower)
+
 
 func destroy():
+	get_tree().change_scene_to_file("res://loose.tscn")
 	print("destroy")
 
 
