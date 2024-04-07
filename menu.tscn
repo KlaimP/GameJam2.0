@@ -1,10 +1,30 @@
-[gd_scene load_steps=6 format=3 uid="uid://bvdnoqkwqs1j"]
+[gd_scene load_steps=13 format=3 uid="uid://bvdnoqkwqs1j"]
 
 [ext_resource type="Script" path="res://scripts/Menu.gd" id="1_hg8uj"]
 [ext_resource type="Texture2D" uid="uid://dumumurpe3o78" path="res://assets/logo.png" id="1_xt1l2"]
 [ext_resource type="Texture2D" uid="uid://cb28n1mhfva4o" path="res://assets/miniCat.png" id="2_8cj5h"]
 [ext_resource type="FontFile" uid="uid://bquer5nna1u0l" path="res://font/ComicoroRu_0.ttf" id="2_jxc3k"]
 [ext_resource type="Texture2D" uid="uid://bgcv6d5x3c5l6" path="res://assets/menu.png" id="2_udulq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8etti"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4amee"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hex3n"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tkutd"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.0980392, 0.0980392, 0.109804, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1od4j"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qinoe"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mcgw2"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -13,17 +33,17 @@ script = ExtResource("1_hg8uj")
 
 [node name="Menu" type="Sprite2D" parent="."]
 texture_filter = 1
-position = Vector2(600, 400)
-scale = Vector2(10, 10)
+position = Vector2(450, 300)
+scale = Vector2(7.5, 7.5)
 texture = ExtResource("2_udulq")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 0
-offset_left = 60.0
-offset_top = 450.0
-offset_right = 167.0
-offset_bottom = 530.0
-scale = Vector2(2.495, 2.495)
+offset_left = 64.0
+offset_top = 356.0
+offset_right = 188.0
+offset_bottom = 436.0
+scale = Vector2(2.00042, 2.00042)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
@@ -33,6 +53,10 @@ texture_filter = 1
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_jxc3k")
 theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxEmpty_8etti")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_4amee")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_hex3n")
+theme_override_styles/focus = SubResource("StyleBoxFlat_tkutd")
 text = "Start"
 
 [node name="Exit" type="Button" parent="MarginContainer/VBoxContainer"]
@@ -41,6 +65,10 @@ texture_repeat = 1
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_jxc3k")
 theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxEmpty_1od4j")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_qinoe")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_mcgw2")
+theme_override_styles/focus = SubResource("StyleBoxFlat_tkutd")
 text = "Exit
 "
 
