@@ -27,7 +27,7 @@ func dark_around():
 
 
 func destroy():
-	dark_around()
+	get_tree().change_scene_to_file("res://loose.tscn")
 	print("destroy")
 
 
