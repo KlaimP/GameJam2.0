@@ -55,7 +55,7 @@ func add_consumer(node):
 func take_energy():
 	consumedEnergy = 0
 	for consumer in energyConsumers:
-		if consumedEnergy + consumer.neededEnergy > maxEnergy: break
+		if consumedEnergy + consumer.neededEnergy > maxEnergy: continue
 		consumedEnergy += consumer.neededEnergy
 		consumer.work()
 
