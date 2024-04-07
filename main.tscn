@@ -58,6 +58,7 @@ color_ramp = SubResource("Gradient_2s08p")
 noise = SubResource("FastNoiseLite_4s4kw")
 
 [node name="Main" type="Node2D"]
+texture_filter = 1
 script = ExtResource("1_vhywa")
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -129,9 +130,9 @@ offset_right = 450.0
 offset_bottom = 300.0
 color = Color(0.207843, 0.207843, 0.207843, 0.278431)
 
-[node name="Sprite2D" type="Sprite2D" parent="Camera2D"]
+[node name="Background" type="Sprite2D" parent="Camera2D/UI"]
+z_index = -200
 material = SubResource("ShaderMaterial_avt40")
-position = Vector2(450, 300)
 texture = SubResource("NoiseTexture2D_48tch")
 
 [node name="Map" type="Node2D" parent="."]
