@@ -22,7 +22,7 @@ func open_build_menu(tile):
 func _on_create_factory_pressed():
 	if !castle.take_materials(price[0]):
 		self.hide()
-		print("Not have material")
+		EventBus.show_info.emit("Not enough material")
 		return
 	choosedTile.set_build(1)
 	self.hide()
@@ -31,7 +31,7 @@ func _on_create_factory_pressed():
 func _on_create_light_pressed():
 	if !castle.take_materials(price[1]):
 		self.hide()
-		print("Not have material")
+		EventBus.show_info.emit("Not enough material")
 		return
 	choosedTile.set_build(2)
 	self.hide()
@@ -40,7 +40,7 @@ func _on_create_light_pressed():
 func _on_create_generator_pressed():
 	if !castle.take_materials(price[2]):
 		self.hide()
-		print("Not have material")
+		EventBus.show_info.emit("Not enough material")
 		return
 	choosedTile.set_build(3)
 	self.hide()

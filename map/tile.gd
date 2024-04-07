@@ -48,15 +48,15 @@ func change_light(value):
 
 func check_dark():
 	if dark != null:
-		if lightPower > 0:
+		if lightPower >= darkNode.calculate_dark(self):
 			darkNode.destroy_infection(self)
 	if futureDark != null:
-		if lightPower > 0:
+		if lightPower >= darkNode.calculate_dark(self):
 			darkNode.destroy_infection(self)
-				
 
 
 func change_color():
+	if dark != null: lightPower = -1
 	match lightPower:
 		-1: $Sprite2D.modulate = Color(0.1, 0.1, 0.1, 1.0); return
 		0: $Sprite2D.modulate = Color(0.3, 0.3, 0.3, 1.0); return

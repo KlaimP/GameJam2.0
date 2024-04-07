@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://bqepsxv2y24uo"]
+[gd_scene load_steps=30 format=3 uid="uid://bqepsxv2y24uo"]
 
 [ext_resource type="Script" path="res://map/map.gd" id="1_n1bfs"]
 [ext_resource type="Script" path="res://main.gd" id="1_vhywa"]
@@ -10,6 +10,8 @@
 [ext_resource type="Script" path="res://Dark.gd" id="3_jrs5i"]
 [ext_resource type="Script" path="res://TurnLabel.gd" id="4_q0d2s"]
 [ext_resource type="Script" path="res://SkipTurnButton.gd" id="4_qmleu"]
+[ext_resource type="Script" path="res://PauseMenu.gd" id="9_at8kd"]
+[ext_resource type="Script" path="res://InfoLabel.gd" id="10_flnke"]
 [ext_resource type="Shader" path="res://shaders/back.gdshader" id="11_epf3o"]
 
 [sub_resource type="Gradient" id="Gradient_fu22i"]
@@ -56,6 +58,26 @@ width = 900
 height = 600
 color_ramp = SubResource("Gradient_2s08p")
 noise = SubResource("FastNoiseLite_4s4kw")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wmx66"]
+bg_color = Color(0.133333, 0.133333, 0.133333, 0.862745)
+border_color = Color(0.27451, 0.27451, 0.27451, 0)
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8p6bl"]
+bg_color = Color(0.133333, 0.133333, 0.133333, 0.862745)
+border_color = Color(0.27451, 0.27451, 0.27451, 0)
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cmga7"]
+bg_color = Color(0.133333, 0.133333, 0.133333, 0.862745)
+border_color = Color(0.27451, 0.27451, 0.27451, 0)
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3groa"]
+bg_color = Color(0.133333, 0.133333, 0.133333, 0.862745)
+border_color = Color(0.27451, 0.27451, 0.27451, 0)
+corner_detail = 1
 
 [node name="Main" type="Node2D"]
 texture_filter = 1
@@ -121,19 +143,70 @@ theme_override_font_sizes/font_size = 48
 text = "Skip Turn"
 script = ExtResource("4_qmleu")
 
-[node name="PauseMenu" type="ColorRect" parent="Camera2D/UI"]
-visible = false
-layout_mode = 0
-offset_left = -450.0
-offset_top = -300.0
-offset_right = 450.0
-offset_bottom = 300.0
-color = Color(0.207843, 0.207843, 0.207843, 0.278431)
-
 [node name="Background" type="Sprite2D" parent="Camera2D/UI"]
 z_index = -200
 material = SubResource("ShaderMaterial_avt40")
 texture = SubResource("NoiseTexture2D_48tch")
+
+[node name="PauseMenu" type="Node2D" parent="Camera2D/UI"]
+visible = false
+script = ExtResource("9_at8kd")
+
+[node name="PauseMenu" type="ColorRect" parent="Camera2D/UI/PauseMenu"]
+offset_left = -450.0
+offset_top = -300.0
+offset_right = 450.0
+offset_bottom = 300.0
+color = Color(0.207843, 0.207843, 0.207843, 0.74902)
+
+[node name="ResumeButton" type="Button" parent="Camera2D/UI/PauseMenu"]
+offset_left = -125.0
+offset_top = -90.0
+offset_right = 125.0
+offset_bottom = 10.0
+theme_override_fonts/font = ExtResource("2_gsyf2")
+theme_override_font_sizes/font_size = 96
+theme_override_styles/normal = SubResource("StyleBoxFlat_wmx66")
+theme_override_styles/hover = SubResource("StyleBoxFlat_8p6bl")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_cmga7")
+theme_override_styles/focus = SubResource("StyleBoxFlat_3groa")
+text = "Resume"
+
+[node name="ExitButton" type="Button" parent="Camera2D/UI/PauseMenu"]
+offset_left = -125.0
+offset_top = 60.0
+offset_right = 125.0
+offset_bottom = 160.0
+theme_override_fonts/font = ExtResource("2_gsyf2")
+theme_override_font_sizes/font_size = 96
+theme_override_styles/normal = SubResource("StyleBoxFlat_wmx66")
+theme_override_styles/hover = SubResource("StyleBoxFlat_8p6bl")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_cmga7")
+theme_override_styles/focus = SubResource("StyleBoxFlat_3groa")
+text = "Exit"
+
+[node name="Label" type="Label" parent="Camera2D/UI/PauseMenu"]
+offset_left = -400.0
+offset_top = -300.0
+offset_right = 400.0
+offset_bottom = -100.0
+theme_override_fonts/font = ExtResource("2_gsyf2")
+theme_override_font_sizes/font_size = 192
+text = "Game paused"
+
+[node name="InfoLabel" type="Label" parent="Camera2D/UI"]
+visible = false
+layout_mode = 0
+offset_left = -182.0
+offset_top = 225.0
+offset_right = 218.0
+offset_bottom = 275.0
+theme_override_fonts/font = ExtResource("2_gsyf2")
+theme_override_font_sizes/font_size = 48
+text = "Info"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("10_flnke")
 
 [node name="Map" type="Node2D" parent="."]
 script = ExtResource("1_n1bfs")
@@ -146,3 +219,5 @@ visible = false
 z_index = 100
 
 [connection signal="pressed" from="Camera2D/UI/SkipTurnButton" to="Camera2D/UI/SkipTurnButton" method="_on_pressed"]
+[connection signal="pressed" from="Camera2D/UI/PauseMenu/ResumeButton" to="Camera2D/UI/PauseMenu" method="_on_resume_button_pressed"]
+[connection signal="pressed" from="Camera2D/UI/PauseMenu/ExitButton" to="Camera2D/UI/PauseMenu" method="_on_exit_button_pressed"]

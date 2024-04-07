@@ -55,7 +55,9 @@ func add_consumer(node):
 func take_energy():
 	consumedEnergy = 0
 	for consumer in energyConsumers:
-		if consumedEnergy + consumer.neededEnergy > maxEnergy: continue
+		if consumedEnergy + consumer.neededEnergy > maxEnergy:
+			EventBus.show_info.emit("Not enough energy")
+			continue
 		consumedEnergy += consumer.neededEnergy
 		consumer.work()
 
